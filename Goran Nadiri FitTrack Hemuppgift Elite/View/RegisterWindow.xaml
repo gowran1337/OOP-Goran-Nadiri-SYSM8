@@ -1,9 +1,9 @@
-﻿<Window x:Class="Goran_Nadiri_FitTrack_Hemuppgift_Elite.RegisterWindow"
+﻿<Window x:Class="Goran_Nadiri_FitTrack_Hemuppgift_Elite.View.RegisterWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite"
+        xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.View"
         mc:Ignorable="d"
         Title="RegisterWindow" Height="450" Width="800">
     <Grid>
@@ -11,17 +11,18 @@
             <TextBlock Text="Register user" FontSize="30" Width="200" TextAlignment="Center"/>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Username"/>
-                <TextBox Width="120"/>
+                <TextBox Width="120" Text="{Binding Model.Data.Username}"/>
+
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Password"/>
-                <TextBox Width="120"/>
+                <TextBlock Text="Password" />
+                <TextBox Width="120" Text="{Binding Password}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Confirm Password"/>
                 <TextBox Width="120"/>
             </StackPanel>
-            
+
             <ComboBox>
                 <ComboBoxItem Content="Sverige"/>
                 <ComboBoxItem Content="Kina"/>
@@ -29,7 +30,7 @@
                 <ComboBoxItem Content="Japan"/>
                 <ComboBoxItem Content="Arabien"/>
             </ComboBox>
-            <Button Content="Register" Command="{Binding Register}"/>
+            <Button Content="Register"/>
 
         </StackPanel>
     </Grid>

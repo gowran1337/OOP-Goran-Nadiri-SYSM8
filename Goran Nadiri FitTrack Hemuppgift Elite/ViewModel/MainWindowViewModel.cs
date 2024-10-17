@@ -1,4 +1,5 @@
 ﻿using Goran_Nadiri_FitTrack_Hemuppgift_Elite.NVVM;
+using Goran_Nadiri_FitTrack_Hemuppgift_Elite.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,16 +14,13 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         internal static ObservableCollection<Model.Data.User> Users { get; set; } = new ObservableCollection<Model.Data.User>();
 
 
-        //public RelayCommand OpenRegisterWindowCommand => new RelayCommand(execute => OpenRegisterWindow);
-        //public RelayCommand RegisterCommand => new RelayCommand()
-
+        public RelayCommand OpenRegisterWindowCommand => new RelayCommand(execute => OpenRegisterWindow());
         
-
 
         private void OpenRegisterWindow()
         {
-            RegisterWindow registerWindow = new RegisterWindow();
-            registerWindow.Show();
+           RegisterWindow registerWindow = new RegisterWindow();
+           registerWindow.Show();
         }
 
     }

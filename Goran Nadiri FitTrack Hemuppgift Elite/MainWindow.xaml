@@ -6,10 +6,7 @@
         xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.DataContext>
-        <local:Data/>
-    </Window.DataContext>
-    
+
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="FitTrack Hard Workout Training Force Elite" FontSize="30"/>

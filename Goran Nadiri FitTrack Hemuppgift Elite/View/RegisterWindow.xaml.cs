@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model;
 
-namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite
+namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
 {
     /// <summary>
     /// Interaction logic for RegisterWindow.xaml
@@ -22,6 +24,8 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite
         public RegisterWindow()
         {
             InitializeComponent();
+            RegisterWindowViewModel RegViewModel = new RegisterWindowViewModel();
+            DataContext = RegViewModel;
         }
     }
 }
