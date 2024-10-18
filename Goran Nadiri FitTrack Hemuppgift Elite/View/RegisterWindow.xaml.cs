@@ -25,7 +25,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
         {
             InitializeComponent();
             RegisterWindowViewModel RegViewModel = new RegisterWindowViewModel();
-            DataContext = RegViewModel;
+            this.DataContext = RegViewModel;
         }
     }
 }

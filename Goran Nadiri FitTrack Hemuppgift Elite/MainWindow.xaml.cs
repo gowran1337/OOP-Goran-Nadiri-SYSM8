@@ -17,11 +17,13 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite
     /// </summary>
     public partial class MainWindow : Window
     {
+        internal static object viewModel;
+
         public MainWindow()
         {
             InitializeComponent();
             MainWindowViewModel viewModel = new MainWindowViewModel();
-            this.DataContext = viewModel;
+            DataContext = viewModel;
         }
     }
 }

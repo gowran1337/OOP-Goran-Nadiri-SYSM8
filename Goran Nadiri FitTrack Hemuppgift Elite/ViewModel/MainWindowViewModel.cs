@@ -14,13 +14,15 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         internal static ObservableCollection<Model.Data.User> Users { get; set; } = new ObservableCollection<Model.Data.User>();
 
 
-        public RelayCommand OpenRegisterWindowCommand => new RelayCommand(execute => OpenRegisterWindow());
+        public RelayCommand OpenRegisterWindow => new RelayCommand(execute => OpenRegisterWindow1());
         
 
-        private void OpenRegisterWindow()
+        private void OpenRegisterWindow1()
         {
+           
            RegisterWindow registerWindow = new RegisterWindow();
            registerWindow.Show();
+          //kod för att stänga main window
         }
 
     }

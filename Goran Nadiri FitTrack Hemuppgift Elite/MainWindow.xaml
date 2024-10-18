@@ -3,9 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite"
+        xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite" xmlns:vm="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
