@@ -1,4 +1,6 @@
-﻿using Goran_Nadiri_FitTrack_Hemuppgift_Elite.NVVM;
+﻿using Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model;
+using Goran_Nadiri_FitTrack_Hemuppgift_Elite.NVVM;
+using Goran_Nadiri_FitTrack_Hemuppgift_Elite.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,26 +9,52 @@ using System.Linq;
 using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 {
     public class RegisterWindowViewModel : ViewModelBase
-    {  //gör så att ändringar i UI ändrar data i filen model.data
-        public static ObservableCollection<Model.Data.User> Users { get; set; } = new ObservableCollection<Model.Data.User>();
- 
-         //om knappen RegisterCommand som finns i XAML filen aktiveras, so executas metoden Register
+    {  
+       
+       UserService userService = new UserService();
+        public ObservableCollection<Model.Data.User> Users { get; set; }
+
         public RelayCommand RegisterCommand => new RelayCommand(execute => Register()); 
 
         
+      
+
         public RegisterWindowViewModel() 
-        {                                                                       //konstruktor för att skapa User
-            Users = new ObservableCollection<Model.Data.User>();
-            Users.Add(new Model.Data.User() { Username = "Zebri95", Password = "1337",
-                      Country = "Arabien", SecurityQuestion = "Favorit frukt?", SecurityAnswer = "äpple" });
+        {                                                   //konstruktor för att skapa User
+           Users = new ObservableCollection<Model.Data.User>();
+           Users = userService.GetUsers();
         }
+
+
 
         private void Register()
         {
+            if(string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password) || string.IsNullOrEmpty(SecurityAnswer))
+            {
+                MessageBox.Show("Fill in all blank spaces", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+            var newUser = new Model.Data.User()
+            {
+                Username = this.Username,
+                Password = this.Password,
+                Country = this.Country,
+                SecurityQuestion = this.SecurityQuestion,
+                SecurityAnswer = this.SecurityAnswer
+            };
+
+            Users.Add(newUser);
+            //userService.AddUser(newUser);
+
+            }
+
+            
             
         }
 
@@ -34,6 +62,9 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 
         private string _username;
         private string _password;
+        private string _country;
+        private string _securityQuestion;
+        private string _securityAnswer;
         
         public string Username
         {
@@ -57,6 +88,42 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 if(_password != value)
                 {
                     _password = value;
+                    OnPropertyChanged();
+                }
+            }
+        } 
+        public string Country
+        {
+            get => _country;
+            set
+            {
+                if(_country != value)
+                {
+                    _country = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public string SecurityQuestion
+        {
+            get => _securityQuestion;
+            set
+            {
+                if (_securityQuestion != value)
+                {
+                    _securityQuestion = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public string SecurityAnswer
+        {
+            get => _securityAnswer;
+            set
+            {
+                if(value != _securityAnswer)
+                {
+                    _securityAnswer = value;
                     OnPropertyChanged();
                 }
             }

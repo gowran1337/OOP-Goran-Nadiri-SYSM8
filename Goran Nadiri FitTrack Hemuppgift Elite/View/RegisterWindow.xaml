@@ -13,21 +13,23 @@
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="Register user" FontSize="30" Width="200" TextAlignment="Center"/>
+            
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Username"/>
-                <TextBox Width="120" Text="{Binding Username}"/>
-
+                <TextBox x:Name="Username"  Width="120" Text="{Binding Username}"/>
             </StackPanel>
+            
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Password" />
-                <TextBox Width="120" Text="{Binding Password}"/>
+                <TextBox x:Name="Password" Width="120" Text="{Binding Password}"/>
             </StackPanel>
+            
             <StackPanel Orientation="Horizontal">
                 <TextBlock  Text="Confirm Password"/>
-                <TextBox Width="120"/>
+                <TextBox x:Name="confirmPassword" Width="120"/>
             </StackPanel>
 
-            <ComboBox>
+            <ComboBox x:Name="Country" ItemsSource="{Binding Country}">
                 <ComboBoxItem Content="Country" IsSelected="True" IsEnabled="False"/>
                 <ComboBoxItem Content="Sverige"/>
                 <ComboBoxItem Content="Kina"/>
@@ -36,17 +38,19 @@
                 <ComboBoxItem Content="Arabien"/>
             </ComboBox>
  
-            <ComboBox>
+            <ComboBox x:Name="Question" ItemsSource="{Binding SecurityQuestion}">
                 <ComboBoxItem Content="Security Question" IsSelected="True" IsEnabled="False"/>
                 <ComboBoxItem Content="Favorit film?"/>
                 <ComboBoxItem Content="Katt eller hund?"/>
                 <ComboBoxItem Content="Aldrig mer vara på balkonger eller förevigt vara utan kalsonger?"/>
             </ComboBox>
+            
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="Answer"/>
-                <TextBox Width="120" Text="{Binding SecurityAnswer}"/>
+                <TextBox x:Name="Answer" Width="120" Text="{Binding SecurityAnswer}"/>
             </StackPanel>
-            <Button Content="Register User"/>
+            
+            <Button Content="Register User" Command="{Binding RegisterCommand}"/>
 
         </StackPanel>
     </Grid>

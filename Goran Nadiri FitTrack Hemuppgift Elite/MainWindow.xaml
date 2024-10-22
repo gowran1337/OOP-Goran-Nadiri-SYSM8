@@ -17,12 +17,12 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="Username" FontSize="17"/>
-                <TextBox Width="100"/>
+                <TextBox Width="100" Text="{Binding LoginUsername}"/>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="Password" FontSize="17"/>
-                <TextBox Width="100"/>
+                <TextBox Width="100" Text="{Binding LoginPassword}"/>
             </StackPanel>
 
             <Button Content="Sign In" Command="{Binding SignIn}" Width="200"/>

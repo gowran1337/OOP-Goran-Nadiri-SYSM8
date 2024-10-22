@@ -1,12 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Permissions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
 {
+    public class UserService
+    {
+        public ObservableCollection<Model.Data.User> Users { get; } = new ObservableCollection<Model.Data.User>();
+
+
+        public UserService()
+        {
+            Users.Add(new Model.Data.User()
+            {
+                Username = "Zebri95",
+                Password = "1337",
+                Country = "Arabien",
+                SecurityQuestion = "Favorit frukt?",
+                SecurityAnswer = "äpple"
+            });
+        }
+        public ObservableCollection<Model.Data.User> GetUsers() { return Users; }
+
+        public void AddUser(Model.Data.User newUser)
+        {
+            Users.Add(newUser);
+        }
+
+    }
     public class Data
     {
         public abstract class Person
