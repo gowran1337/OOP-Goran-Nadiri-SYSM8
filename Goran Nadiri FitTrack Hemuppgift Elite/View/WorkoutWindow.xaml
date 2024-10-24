@@ -3,10 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.View"
+        xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.View" xmlns:viewmodel="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="WorkoutWindow" Height="450" Width="800">
     <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="{Binding CurrentUser}" FontSize="20"/>
+            <Button Content="Show User Details" Width="100"/>
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <Button Content="Add Workout" Command="{Binding OpenAddWorkOutWindowCommand}"/>
+                <Button Content="Remove Workout" Command="{Binding RemoveWorkOutCommand}"/>
+            </StackPanel>
+            
+            <DataGrid ItemsSource="{Binding }" AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Workout Type" Binding="{Binding WorkType}" />
+                    <DataGridTextColumn Header="Workout Duration" Binding="{Binding Duration}" />
+                    
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+
+
+
+
+        </StackPanel>
         
     </Grid>
 </Window>

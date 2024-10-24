@@ -1,46 +1,46 @@
 ﻿using Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model;
 using Goran_Nadiri_FitTrack_Hemuppgift_Elite.NVVM;
 using Goran_Nadiri_FitTrack_Hemuppgift_Elite.View;
-using System;
-using System.Collections.Generic;
+using Microsoft.Azure.Amqp.Framing;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
+using Data = Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model.Data;
 
 namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 {
-    internal class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase
     {
-        UserService userService = new UserService();
-        internal static ObservableCollection<Model.Data.User> Users;
-        //internal static ObservableCollection<Model.Data.User> Users { get; set; } = new ObservableCollection<Model.Data.User>();
+        UserService userService;
+        
+        public ObservableCollection<User> Users;
+        
 
-        public RelayCommand SignIn => new RelayCommand(execute => SignInCommand());
-        public RelayCommand OpenRegisterWindow => new RelayCommand(execute => OpenRegisterWindowCommand());
+        public RelayCommand SignInCommand => new RelayCommand(execute => SignIn());
+        public RelayCommand OpenRegisterWindowCommand => new RelayCommand(execute => OpenRegisterWindow());
+        public RelayCommand ForgotPasswordCommand => new RelayCommand(execute => OpenForgotPasswordWindow());
 
         public MainWindowViewModel(UserService userService)
         {
             this.userService = userService;
-            
-        }
-
-
-        public MainWindowViewModel()
-        {
-            Users = new ObservableCollection<Model.Data.User>();
             Users = userService.GetUsers();
         }
-        private void SignInCommand()
+
+        private void OpenForgotPasswordWindow()
+        {
+            ForgetPasswordWindow forgetPasswordWindow = new ForgetPasswordWindow(userService);
+            forgetPasswordWindow.Show();
+        }
+
+        public void SignIn()
         {
             var User = Users.FirstOrDefault(u => u.Username == LoginUsername && u.Password == LoginPassword);
             if (User != null)
             {
-                WorkoutWindow workoutWindow = new WorkoutWindow();
-                workoutWindow.Show(); 
-                    
+                
+                WorkoutWindow workoutWindow = new WorkoutWindow(userService);
+                workoutWindow.Show();
+                CurrentUser = User;
+               
             }
             else
             {
@@ -49,15 +49,16 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         }
 
 
-        private void OpenRegisterWindowCommand()
+        private void OpenRegisterWindow()
         {
            
-           RegisterWindow registerWindow = new RegisterWindow();
+           RegisterWindow registerWindow = new RegisterWindow(userService);
            registerWindow.Show();
           //kod för att stänga main window
         }
         private string _password;
         private string _username;
+        private User _currentUser;
 
         public string LoginUsername
         {
@@ -84,6 +85,20 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                     OnPropertyChanged();
                 }
             }
+        }
+        public User CurrentUser
+        {
+            get => _currentUser;
+            set
+            {
+                if (_currentUser != value)
+                {
+                    _currentUser = value;
+                    OnPropertyChanged();
+                }
+
+            }
+
         }
     }
 }

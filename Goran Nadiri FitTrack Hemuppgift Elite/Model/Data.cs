@@ -4,12 +4,13 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
 {
     public class UserService
     {
-        public ObservableCollection<Model.Data.User> Users { get; } = new ObservableCollection<Model.Data.User>();
+        public ObservableCollection<User> Users { get; } = new ObservableCollection<User>();
 
-
+        public User CurrentUser { get; set; }
+        
         public UserService()
         {
-            Users.Add(new Model.Data.User()
+            Users.Add(new User()
             {
                 Username = "Zebri95",
                 Password = "1337",
@@ -18,9 +19,9 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
                 SecurityAnswer = "äpple"
             });
         }
-        public ObservableCollection<Model.Data.User> GetUsers() { return Users; }
+        public ObservableCollection<User> GetUsers() { return Users; }
 
-        public void AddUser(Model.Data.User newUser)
+        public void AddUser(User newUser)
         {
             Users.Add(newUser);
         }
@@ -28,25 +29,26 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
     }
     public class Data
     {
-        public abstract class Person
-        {
-            public string Username { get; set; }
-            public string Password { get; set; }
-            public abstract void SignIn();
-        }
+        //public abstract class Person
+        //{
+        //    public string Username { get; set; }
+        //    public string Password { get; set; }
+        //    public abstract void SignIn();
+        //}
 
-        public class User : Person
-        {
+        //public class User : Person
+        //{
 
-            public string Country { get; set; }
-            public string SecurityQuestion { get; set; }
-            public string SecurityAnswer { get; set; }
+        //    public string Country { get; set; }
+        //    public string SecurityQuestion { get; set; }
+        //    public string SecurityAnswer { get; set; } 
+        //    public override void SignIn()
+        //    {
+        //        MessageBox.Show($"User {Username} has logged in!");
+        //    }
 
-            public override void SignIn()
-            {
 
-            }
-        }
+        //}
 
         public class Admin : User
         {
@@ -66,7 +68,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
 
             public abstract int CalculateCaloriesBurned();
             
-
+            
             
  
         }

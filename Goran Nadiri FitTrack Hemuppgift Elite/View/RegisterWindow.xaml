@@ -6,27 +6,31 @@
         xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.View" xmlns:vm="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel"
         mc:Ignorable="d"
         Title="RegisterWindow" Height="450" Width="800">
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <vm:RegisterWindowViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>-->
 
     <Grid>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90*"/>
+            <RowDefinition Height="127*"/>
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,129,0,0" Grid.RowSpan="2">
             <TextBlock Text="Register user" FontSize="30" Width="200" TextAlignment="Center"/>
-            
+
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Username"/>
                 <TextBox x:Name="Username"  Width="120" Text="{Binding Username}"/>
             </StackPanel>
-            
+
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Password" />
                 <TextBox x:Name="Password" Width="120" Text="{Binding Password}"/>
             </StackPanel>
-            
+
             <StackPanel Orientation="Horizontal">
                 <TextBlock  Text="Confirm Password"/>
-                <TextBox x:Name="confirmPassword" Width="120"/>
+                <TextBox x:Name="confirmPassword" Text="{Binding ConfirmPassword}" Width="120"/>
             </StackPanel>
 
             <ComboBox x:Name="Country" ItemsSource="{Binding Country}">
@@ -37,19 +41,19 @@
                 <ComboBoxItem Content="Japan"/>
                 <ComboBoxItem Content="Arabien"/>
             </ComboBox>
- 
+
             <ComboBox x:Name="Question" ItemsSource="{Binding SecurityQuestion}">
                 <ComboBoxItem Content="Security Question" IsSelected="True" IsEnabled="False"/>
                 <ComboBoxItem Content="Favorit film?"/>
                 <ComboBoxItem Content="Katt eller hund?"/>
                 <ComboBoxItem Content="Aldrig mer vara på balkonger eller förevigt vara utan kalsonger?"/>
             </ComboBox>
-            
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="Answer"/>
                 <TextBox x:Name="Answer" Width="120" Text="{Binding SecurityAnswer}"/>
             </StackPanel>
-            
+
             <Button Content="Register User" Command="{Binding RegisterCommand}"/>
 
         </StackPanel>

@@ -1,46 +1,62 @@
 ﻿using Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model;
 using Goran_Nadiri_FitTrack_Hemuppgift_Elite.NVVM;
-using Goran_Nadiri_FitTrack_Hemuppgift_Elite.View;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Security.RightsManagement;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 {
     public class RegisterWindowViewModel : ViewModelBase
-    {  
-       
-       UserService userService = new UserService();
-        public ObservableCollection<Model.Data.User> Users { get; set; }
+    {
 
-        public RelayCommand RegisterCommand => new RelayCommand(execute => Register()); 
+        UserService userService;
+        public ObservableCollection<User> Users { get; set; }
 
-        
-      
+        public RelayCommand RegisterCommand => new RelayCommand(execute => Register());
 
-        public RegisterWindowViewModel() 
-        {                                                   //konstruktor för att skapa User
-           Users = new ObservableCollection<Model.Data.User>();
-           Users = userService.GetUsers();
+        public RegisterWindowViewModel(UserService userService)
+        {
+            this.userService = userService;
+            Users = userService.GetUsers();
         }
 
 
+        public RegisterWindowViewModel() 
+        {                                                   //konstruktor för att skapa User  
+           
+        }
 
         private void Register()
         {
-            if(string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password) || string.IsNullOrEmpty(SecurityAnswer))
+            if // kollar att textboxarna inte är tomma
+                (string.IsNullOrWhiteSpace(Username)
+                || string.IsNullOrWhiteSpace(Password)
+                || string.IsNullOrEmpty(SecurityAnswer))
             {
                 MessageBox.Show("Fill in all blank spaces", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
+            else if(Password.Length < 8)
+            {
+                MessageBox.Show("Password must contain 8 characters", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+               
+            }
+            else if (!Password.Any(char.IsDigit))
+                {
+                MessageBox.Show ("Password must contain a digit", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            else if (!ContainsSpecialCharacters(Password))
+            {
+                MessageBox.Show("Password must contain a special character", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if(Password != ConfirmPassword)
+            {
+                MessageBox.Show("Passwords do not match", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
             else
             {
-            var newUser = new Model.Data.User()
+            var newUser = new User() // skapar kontot
             {
                 Username = this.Username,
                 Password = this.Password,
@@ -50,22 +66,19 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
             };
 
             Users.Add(newUser);
-            //userService.AddUser(newUser);
+            userService.AddUser(newUser);
+                MessageBox.Show("New user created!", "Succsess!", MessageBoxButton.OK);
 
-            }
-
-            
-            
+            }         
         }
-
-
-
         private string _username;
         private string _password;
         private string _country;
         private string _securityQuestion;
         private string _securityAnswer;
-        
+        private string _confirmPassword;
+
+
         public string Username
         {
             get => _username;
@@ -128,7 +141,25 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 }
             }
         }
-
+        public string ConfirmPassword
+        {
+            get => _confirmPassword;
+            set
+            {
+                if (value != _confirmPassword)
+                {
+                    _confirmPassword = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        static bool ContainsSpecialCharacters(string Password)
+        {
+            // Define a regular expression for special characters
+            string pattern = @"[!@#$%^&*(),.?""':;{}|<>]";
+            // Check if the string contains at least one special character
+            return Regex.IsMatch(Password, pattern);
+        }
 
 
     }

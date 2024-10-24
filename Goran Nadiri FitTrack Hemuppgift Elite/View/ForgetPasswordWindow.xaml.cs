@@ -1,4 +1,5 @@
-﻿using Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel;
+﻿using Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model;
+using Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,20 +13,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model;
 
 namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
 {
     /// <summary>
-    /// Interaction logic for RegisterWindow.xaml
+    /// Interaction logic for ForgetPasswordWindow.xaml
     /// </summary>
-    public partial class RegisterWindow : Window
+    public partial class ForgetPasswordWindow : Window
     {
-        public RegisterWindow(UserService userService)
+        public ForgetPasswordWindow(UserService userService)
         {
             InitializeComponent();
-            RegisterWindowViewModel RegViewModel = new RegisterWindowViewModel(userService);
-            this.DataContext = RegViewModel;
+            ForgetPasswordViewModel forgetPasswordViewModel = new ForgetPasswordViewModel(userService);
+            this.DataContext = forgetPasswordViewModel;
         }
     }
 }

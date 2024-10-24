@@ -3,13 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite" xmlns:vm="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel"
+        xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite" xmlns:vm="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel" d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <vm:MainWindowViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>-->
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -25,8 +25,11 @@
                 <TextBox Width="100" Text="{Binding LoginPassword}"/>
             </StackPanel>
 
-            <Button Content="Sign In" Command="{Binding SignIn}" Width="200"/>
-            <Button Content="Register" Command="{Binding OpenRegisterWindow}" Width="200"/>
+            <Button Content="Sign In" Command="{Binding SignInCommand}" Width="200"/>
+            <Button Content="Register" Command="{Binding OpenRegisterWindowCommand}" Width="200"/>
+            <Button Content="Forgot password" Command="{Binding ForgotPasswordCommand}" Width="100" Margin="10"/>
+           
+            
         </StackPanel>
     </Grid>
 </Window>

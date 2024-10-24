@@ -1,4 +1,5 @@
-﻿using Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel;
+﻿using Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model;
+using Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,10 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
     /// </summary>
     public partial class WorkoutWindow : Window
     {
-        public WorkoutWindow()
+        public WorkoutWindow(UserService userService)
         {
             InitializeComponent();
-            WorkoutWindowViewModel WorkOutViewModel = new WorkoutWindowViewModel();
+            WorkoutWindowViewModel WorkOutViewModel = new WorkoutWindowViewModel(userService);
             this.DataContext = WorkOutViewModel;
     
         }
