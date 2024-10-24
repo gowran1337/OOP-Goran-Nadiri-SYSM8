@@ -8,7 +8,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
 {
     public abstract class Workout
     {
-        public DateTime StartTime { get; set; }
+        public DateTime Date { get; set; }
         public string Type { get; set; }
         public TimeSpan Duration { get; set; }
         public int CaloriesBurned { get; set; }

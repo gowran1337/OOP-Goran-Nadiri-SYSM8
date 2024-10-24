@@ -5,7 +5,8 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
     public class UserService
     {
         public ObservableCollection<User> Users { get; } = new ObservableCollection<User>();
-
+        
+        
         public User CurrentUser { get; set; }
         
         public UserService()
@@ -25,6 +26,10 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
         {
             Users.Add(newUser);
         }
+
+
+        public ObservableCollection<Workout> Workouts { get; } = new ObservableCollection<Workout>();
+
 
     }
     public class Data
