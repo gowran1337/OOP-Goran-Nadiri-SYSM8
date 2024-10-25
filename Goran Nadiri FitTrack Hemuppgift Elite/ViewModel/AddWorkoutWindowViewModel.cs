@@ -1,10 +1,12 @@
 ﻿using Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model;
 using Goran_Nadiri_FitTrack_Hemuppgift_Elite.NVVM;
 using System;
-
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
-
 
 namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 {
@@ -25,7 +27,19 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 
         public void AddWorkout()
         {
-
+            if (string.IsNullOrWhiteSpace(Duration) || string.IsNullOrWhiteSpace(WorkoutType)
+                || SelectedDate == null || string.IsNullOrWhiteSpace(Notes))
+            {
+                MessageBox.Show("Fill in all blank spaces", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            else
+            {
+                var newWorkout = new Cardio()
+                {
+                    //fortsätt här
+                };
+            }
         }
 
 

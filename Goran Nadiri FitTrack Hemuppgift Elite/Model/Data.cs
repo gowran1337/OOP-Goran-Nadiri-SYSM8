@@ -1,59 +1,63 @@
 ﻿using System.Collections.ObjectModel;
+using static Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model.Data;
 
 namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
 {
     public class UserService
     {
-        public ObservableCollection<User> Users { get; } = new ObservableCollection<User>();
-        
+        public ObservableCollection<User> Users { get; } = new ObservableCollection<User>(); //skapar listan Users
+        public ObservableCollection<User> GetUsers() { return Users; }
+        public ObservableCollection<Workout> GetWorkouts() { return CurrentUser.Workouts; }
         
         public User CurrentUser { get; set; }
-        
+
         public UserService()
         {
             Users.Add(new User()
             {
-                Username = "Zebri95",
-                Password = "1337",
+                Username = "1",
+                Password = "1",
                 Country = "Arabien",
                 SecurityQuestion = "Favorit frukt?",
-                SecurityAnswer = "äpple"
-            });
+                SecurityAnswer = "äpple",
+
+                Workouts = new ObservableCollection<Workout>() {
+                    new Cardio()
+                    {
+                        Date = DateTime.Now,
+                        Duration = "90",
+                        Notes = "Ett ajjajeb pass",
+                        Type = "Cardio",
+
+                    }
+            }
+            });        
         }
-        public ObservableCollection<User> GetUsers() { return Users; }
 
         public void AddUser(User newUser)
         {
             Users.Add(newUser);
         }
+  
+        public void AddWorkout(Workout newWorkout)
+        {
+            
+            if (CurrentUser != null)
+            {
+                CurrentUser.Workouts.Add(newWorkout);
+            }
+        }
 
 
-        public ObservableCollection<Workout> Workouts { get; } = new ObservableCollection<Workout>();
+
+
+
 
 
     }
     public class Data
     {
-        //public abstract class Person
-        //{
-        //    public string Username { get; set; }
-        //    public string Password { get; set; }
-        //    public abstract void SignIn();
-        //}
-
-        //public class User : Person
-        //{
-
-        //    public string Country { get; set; }
-        //    public string SecurityQuestion { get; set; }
-        //    public string SecurityAnswer { get; set; } 
-        //    public override void SignIn()
-        //    {
-        //        MessageBox.Show($"User {Username} has logged in!");
-        //    }
-
-
-        //}
+     
 
         public class Admin : User
         {
@@ -67,7 +71,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
         {
             public DateTime StartTime  { get; set; }
             public string Type {  get; set; }
-            public TimeSpan Duration {  get; set; }
+            public string Duration {  get; set; }
             public int CaloriesBurned { get; set; }
             public string Notes {  get; set; }
 

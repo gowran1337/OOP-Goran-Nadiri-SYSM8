@@ -12,7 +12,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         UserService userService;
         public ObservableCollection<User> Users { get; set; }
 
-        public RelayCommand RegisterCommand => new RelayCommand(execute => Register());
+        public RelayCommand RegisterCommand => new RelayCommand(execute => Register()); //översätter knappen från XAML filen till en funktion här i viewmodel
 
         public RegisterWindowViewModel(UserService userService)
         {
@@ -21,9 +21,13 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         }
 
 
-        public RegisterWindowViewModel() 
-        {                                                   //konstruktor för att skapa User  
-           
+        public RegisterWindowViewModel()
+        {                                                   
+
+        }
+        public bool IsUsernameTaken(string username) //metod för att se om username redan finns
+        {
+            return Users.Any(user => user.Username.Equals(username));
         }
 
         private void Register()
@@ -36,42 +40,46 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 MessageBox.Show("Fill in all blank spaces", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            else if(Password.Length < 8)
+            else if (Password.Length < 8)
             {
                 MessageBox.Show("Password must contain 8 characters", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-               
+
             }
             else if (!Password.Any(char.IsDigit))
-                {
-                MessageBox.Show ("Password must contain a digit", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+            {
+                MessageBox.Show("Password must contain a digit", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             else if (!ContainsSpecialCharacters(Password))
             {
                 MessageBox.Show("Password must contain a special character", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            else if(Password != ConfirmPassword)
+            else if (Password != ConfirmPassword)
             {
                 MessageBox.Show("Passwords do not match", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (IsUsernameTaken(Username))
+            {
+                MessageBox.Show("Username already taken", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             else
             {
-            var newUser = new User() // skapar kontot
-            {
-                Username = this.Username,
-                Password = this.Password,
-                Country = this.Country,
-                SecurityQuestion = this.SecurityQuestion,
-                SecurityAnswer = this.SecurityAnswer
-            };
+                var newUser = new User() // skapar kontot
+                {
+                    Username = Username,
+                    Password = Password,
+                    Country = Country,
+                    SecurityQuestion = SecurityQuestion,
+                    SecurityAnswer = SecurityAnswer
+                };
 
-            Users.Add(newUser);
-            userService.AddUser(newUser);
+                Users.Add(newUser);
+                userService.AddUser(newUser);
                 MessageBox.Show("New user created!", "Succsess!", MessageBoxButton.OK);
 
-            }         
+            }
         }
-        private string _username;
+        private string _username; //properties för alla strings, detta gör det möjligt att läsa in det som står i bindings i XAML filen
         private string _password;
         private string _country;
         private string _securityQuestion;
@@ -84,7 +92,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
             get => _username;
             set
             {
-                if(_username != value)
+                if (_username != value)
                 {
                     _username = value;
                     OnPropertyChanged();
@@ -98,19 +106,19 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
             get => _password;
             set
             {
-                if(_password != value)
+                if (_password != value)
                 {
                     _password = value;
                     OnPropertyChanged();
                 }
             }
-        } 
+        }
         public string Country
         {
             get => _country;
             set
             {
-                if(_country != value)
+                if (_country != value)
                 {
                     _country = value;
                     OnPropertyChanged();
@@ -134,7 +142,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
             get => _securityAnswer;
             set
             {
-                if(value != _securityAnswer)
+                if (value != _securityAnswer)
                 {
                     _securityAnswer = value;
                     OnPropertyChanged();

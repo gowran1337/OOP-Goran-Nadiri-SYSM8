@@ -17,16 +17,19 @@ using System.Windows.Shapes;
 namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
 {
     /// <summary>
-    /// Interaction logic for AddWorkoutWindow.xaml
+    /// Interaction logic for UserDetailsWindow.xaml
     /// </summary>
-    public partial class AddWorkoutWindow : Window
+    public partial class UserDetailsWindow : Window
     {
-        public AddWorkoutWindow(UserService userService)
+        public UserDetailsWindow()
+        {
+        }
+
+        public UserDetailsWindow(UserService userService)
         {
             InitializeComponent();
-            AddWorkoutWindowViewModel addWorkoutWindowViewModel = new AddWorkoutWindowViewModel(userService);
-            this.DataContext = addWorkoutWindowViewModel;
-            
+            UserDetailsViewModel userDetailsViewModel = new(userService);
+            this.DataContext = userDetailsViewModel;
         }
     }
 }

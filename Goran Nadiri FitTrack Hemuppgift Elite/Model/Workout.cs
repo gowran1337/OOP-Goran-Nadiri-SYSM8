@@ -10,7 +10,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
     {
         public DateTime Date { get; set; }
         public string Type { get; set; }
-        public TimeSpan Duration { get; set; }
+        public string Duration { get; set; }
         public int CaloriesBurned { get; set; }
         public string Notes { get; set; }
 

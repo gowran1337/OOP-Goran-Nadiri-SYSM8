@@ -1,0 +1,42 @@
+﻿<Window x:Class="Goran_Nadiri_FitTrack_Hemuppgift_Elite.View.UserDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.View" d:DataContext="{d:DesignInstance Type=local:UserDetailsViewModel}"
+        mc:Ignorable="d"
+        Title="UserDetailsWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Content="User Details" HorizontalAlignment="Center" FontSize="20"/>
+            
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Change username"/>
+                <TextBox Width="150" Text="{Binding NewUsername}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Change Password"/>
+                <TextBox Width="150" Text="{Binding NewPassword1}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Confirm Password"/>
+                <TextBox Width="150" Text="{Binding ConfirmNewPassword1}"/>
+            </StackPanel>
+            
+                <ComboBox ItemsSource="{Binding newCountry}" Width="175">
+                <ComboBoxItem Content="Change country" IsSelected="True" IsEnabled="False"/>
+                <ComboBoxItem Content="Sverige"/>
+                <ComboBoxItem Content="Kina"/>
+                <ComboBoxItem Content="Spanien"/>
+                <ComboBoxItem Content="Japan"/>
+                <ComboBoxItem Content="Arabien"/>
+            </ComboBox>
+            <Button Content="Save" Command="{Binding SaveCommand}"/>
+            <Button Content="Back"/>
+
+
+
+
+        </StackPanel>
+    </Grid>
+</Window>

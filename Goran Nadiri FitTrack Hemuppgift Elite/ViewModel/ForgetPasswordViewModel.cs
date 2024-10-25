@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
+namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
 {
     public class ForgetPasswordViewModel : ViewModelBase
     {
@@ -30,7 +30,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         private void SubmitUsername()
         {
             var User = Users.FirstOrDefault(u => u.Username == ForgotUsername); //letar efter listan Users om det inmatade namnet är kopplat till det i listan
-            if(User != null)
+            if (User != null)
             {
                 SecurityQuestion = User.SecurityQuestion;   //det kopplade namnets security question visas i nu i textboxen "securityquestion"
             }
@@ -39,11 +39,11 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 MessageBox.Show("This username does not exist", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        
+
         private void SubmitAnswer()
         {
             var User = Users.FirstOrDefault(u => u.Username == ForgotUsername);
-            if(User != null && User.SecurityAnswer == Answer)
+            if (User != null && User.SecurityAnswer == Answer)
             {
                 ButtonPressable = true;
             }
@@ -62,20 +62,20 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 MessageBox.Show("Fill in all blank spaces", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            else if(NewPassword.Length < 8)
+            else if (NewPassword.Length < 8)
             {
                 MessageBox.Show("Password must contain 8 characters", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-               
+
             }
             else if (!NewPassword.Any(char.IsDigit))
-                {
-                MessageBox.Show ("Password must contain a digit", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+            {
+                MessageBox.Show("Password must contain a digit", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             else if (!ContainsSpecialCharacters(NewPassword))
             {
                 MessageBox.Show("Password must contain a special character", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            else if(NewPassword != NewPasswordConfirm)
+            else if (NewPassword != NewPasswordConfirm)
             {
                 MessageBox.Show("Passwords do not match", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }

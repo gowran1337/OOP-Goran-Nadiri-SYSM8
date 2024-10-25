@@ -1,4 +1,5 @@
 ﻿using Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model;
+using Goran_Nadiri_FitTrack_Hemuppgift_Elite.View;
 using Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel;
 using System.Configuration;
 using System.Data;
@@ -19,6 +20,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite
             UserService userService = new UserService();
             MainWindowViewModel window = new MainWindowViewModel(userService);
             
+
         }
     }
 

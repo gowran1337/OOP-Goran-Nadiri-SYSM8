@@ -24,8 +24,13 @@
                 <TextBlock Text="Password" FontSize="17"/>
                 <TextBox Width="100" Text="{Binding LoginPassword}"/>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="2FA code" FontSize="17"/>
+                <TextBox Width="100" Text="{Binding EnteredVerificationCode}"/>
+            </StackPanel>
 
             <Button Content="Sign In" Command="{Binding SignInCommand}" Width="200"/>
+            <Button Content="Send 2FA Code" Command="{Binding SignIn2FAcommand}" Width="200"/>
             <Button Content="Register" Command="{Binding OpenRegisterWindowCommand}" Width="200"/>
             <Button Content="Forgot password" Command="{Binding ForgotPasswordCommand}" Width="100" Margin="10"/>
            

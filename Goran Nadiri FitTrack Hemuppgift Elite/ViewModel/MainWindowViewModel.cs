@@ -1,6 +1,7 @@
 ﻿using Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model;
 using Goran_Nadiri_FitTrack_Hemuppgift_Elite.NVVM;
 using Goran_Nadiri_FitTrack_Hemuppgift_Elite.View;
+using Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel;
 using Microsoft.Azure.Amqp.Framing;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -11,13 +12,14 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
     public class MainWindowViewModel : ViewModelBase
     {
         UserService userService;
-        
-        public ObservableCollection<User> Users;
-        
 
-        public RelayCommand SignInCommand => new RelayCommand(execute => SignIn());
+        public ObservableCollection<User> Users;
+
+
+        public RelayCommand SignInCommand => new RelayCommand(execute => SignIn()); // knappar från XAML fil översätts till funktion i denna
         public RelayCommand OpenRegisterWindowCommand => new RelayCommand(execute => OpenRegisterWindow());
         public RelayCommand ForgotPasswordCommand => new RelayCommand(execute => OpenForgotPasswordWindow());
+        public RelayCommand SignIn2FAcommand => new RelayCommand(execute => SignIn2FA());
 
         public MainWindowViewModel(UserService userService)
         {
@@ -25,7 +27,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
             Users = userService.GetUsers();
         }
 
-        private void OpenForgotPasswordWindow()
+        public void OpenForgotPasswordWindow()
         {
             ForgetPasswordWindow forgetPasswordWindow = new ForgetPasswordWindow(userService);
             forgetPasswordWindow.Show();
@@ -33,32 +35,41 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 
         public void SignIn()
         {
-            var User = Users.FirstOrDefault(u => u.Username == LoginUsername && u.Password == LoginPassword);
-            if (User != null)
+            var User = Users.FirstOrDefault(u => u.Username == LoginUsername && u.Password == LoginPassword);// letar efter en user som har samma namn som inmatad text samt lösenord
+            if (User != null && TheVerificationCode == EnteredVerificationCode)
             {
-                
                 WorkoutWindow workoutWindow = new WorkoutWindow(userService);
-                workoutWindow.Show();
+                workoutWindow.Show(); //öppnar ´workout fönstret
                 CurrentUser = User;
-               
             }
             else
             {
-                MessageBox.Show("Invalid username or password.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Invalid username or password or 2FA code", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-
-        private void OpenRegisterWindow()
+        public void SignIn2FA()
         {
-           
-           RegisterWindow registerWindow = new RegisterWindow(userService);
-           registerWindow.Show();
-          //kod för att stänga main window
+            
+          
+            MessageBox.Show("Verification code sent via email", "Very secure person!", MessageBoxButton.OK);
+            VerificationWindow verificationWindow = new VerificationWindow(userService);
+            verificationWindow.Show();
+
         }
+
+        public void OpenRegisterWindow()
+        {
+            RegisterWindow registerWindow = new RegisterWindow(userService);
+            registerWindow.Show();       
+        }
+
+
         private string _password;
-        private string _username;
+        private string _username; //properties
         private User _currentUser;
+        private string _theVerificationCode;
+        private string _enteredVerificationCode;
+        private string verificationCode;
 
         public string LoginUsername
         {
@@ -99,6 +110,31 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 
             }
 
+        }
+
+        public string EnteredVerificationCode
+        {
+            get => _enteredVerificationCode;
+            set
+            {
+                if (_enteredVerificationCode != value)
+                {
+                    _enteredVerificationCode = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public string TheVerificationCode
+        {
+            get => _theVerificationCode;
+            set
+            {
+                if (_theVerificationCode != value)
+                {
+                    _theVerificationCode = value;
+                    OnPropertyChanged();
+                }
+            }
         }
     }
 }
