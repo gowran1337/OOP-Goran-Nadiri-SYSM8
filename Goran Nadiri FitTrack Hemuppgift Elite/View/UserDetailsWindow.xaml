@@ -8,6 +8,10 @@
         Title="UserDetailsWindow" Height="450" Width="800">
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding CurrentUsername}" FontSize="13"/>
+                <TextBlock Text="{Binding Country}" FontSize="13"/>
+            </StackPanel>
             <Label Content="User Details" HorizontalAlignment="Center" FontSize="20"/>
             
             <StackPanel Orientation="Horizontal">
@@ -33,7 +37,7 @@
             </ComboBox>
             <Button Content="Save" Command="{Binding SaveCommand}"/>
             <Button Content="Back"/>
-
+            
 
 
 

@@ -76,7 +76,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 Users.Add(newUser);
                 userService.AddUser(newUser);
                 MessageBox.Show("New user created!", "Succsess!", MessageBoxButton.OK);
-
+                
             }
         }
         private string _username; //properties för alla strings, detta gör det möjligt att läsa in det som står i bindings i XAML filen
@@ -85,6 +85,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         private string _securityQuestion;
         private string _securityAnswer;
         private string _confirmPassword;
+        private string _currentUser;
 
 
         public string Username
@@ -161,6 +162,24 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 }
             }
         }
+
+        public string CurrentUser
+        {
+            get => _currentUser;
+            set
+            {
+                if (_currentUser != value)
+                {
+                    _currentUser = value;
+                    OnPropertyChanged();
+                }
+
+            }
+
+        }
+
+
+
         static bool ContainsSpecialCharacters(string Password)
         {
             // Define a regular expression for special characters

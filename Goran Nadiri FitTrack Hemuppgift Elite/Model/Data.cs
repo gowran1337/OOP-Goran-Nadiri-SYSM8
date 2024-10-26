@@ -8,6 +8,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
         public ObservableCollection<User> Users { get; } = new ObservableCollection<User>(); //skapar listan Users
         public ObservableCollection<User> GetUsers() { return Users; }
         public ObservableCollection<Workout> GetWorkouts() { return CurrentUser.Workouts; }
+
         
         public User CurrentUser { get; set; }
 
@@ -25,7 +26,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
                     new Cardio()
                     {
                         Date = DateTime.Now,
-                        Duration = "90",
+                        Duration = " 90",
                         Notes = "Ett ajjajeb pass",
                         Type = "Cardio",
 

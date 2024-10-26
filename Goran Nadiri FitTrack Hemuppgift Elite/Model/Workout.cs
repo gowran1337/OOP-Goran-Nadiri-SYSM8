@@ -13,7 +13,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
         public string Duration { get; set; }
         public int CaloriesBurned { get; set; }
         public string Notes { get; set; }
-
+        public int reps {  get; set; }
         public abstract int CalculateCaloriesBurned();
 
 

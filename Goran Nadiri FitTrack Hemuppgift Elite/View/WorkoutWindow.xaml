@@ -20,7 +20,7 @@
             
             <DataGrid ItemsSource="{Binding CurrentUser}" AutoGenerateColumns="False" >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Workout Type" Binding="{Binding WorkType}" />
+                    <DataGridTextColumn Header="Workout Type" Binding="{Binding WorkoutType}" />
                     <DataGridTextColumn Header="Workout Date" Binding="{Binding Date}" />
                 </DataGrid.Columns>
             </DataGrid>

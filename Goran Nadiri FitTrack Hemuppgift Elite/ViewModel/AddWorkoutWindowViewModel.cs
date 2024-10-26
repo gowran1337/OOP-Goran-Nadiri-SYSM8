@@ -25,20 +25,29 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
             Users = userService.GetUsers();
         }
 
-        public void AddWorkout()
+        public void AddWorkout() //if else för cardio eller strenght
         {
-            if (string.IsNullOrWhiteSpace(Duration) || string.IsNullOrWhiteSpace(WorkoutType)
-                || SelectedDate == null || string.IsNullOrWhiteSpace(Notes))
+
+            
+
+            if(string.IsNullOrWhiteSpace(Notes?.Trim()) || string.IsNullOrWhiteSpace(Duration)
+                || SelectedDate == null)
             {
                 MessageBox.Show("Fill in all blank spaces", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                
             }
             else
             {
+                
                 var newWorkout = new Cardio()
                 {
-                    //fortsätt här
+                    
+                    Duration = Duration,
+                    Date = SelectedDate,
+                    Notes = Notes,
+                    //calories burned (anropa metoden), duration kanske inte behövs
                 };
+                
             }
         }
 
@@ -49,6 +58,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         private string _duration;
         private string _workoutType;
         private DateTime _selectedDate;
+        private string _currentUser;
 
         public DateTime SelectedDate
         {
@@ -100,6 +110,20 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 if (_notes != value)
                 {
                     _notes = value;
+                    OnPropertyChanged();
+                }
+
+            }
+
+        }
+        public string CurrentUser
+        {
+            get => _currentUser;
+            set
+            {
+                if (_currentUser != value)
+                {
+                    _currentUser = value;
                     OnPropertyChanged();
                 }
 

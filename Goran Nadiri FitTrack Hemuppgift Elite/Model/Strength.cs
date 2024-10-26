@@ -11,7 +11,9 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
 
         public override int CalculateCaloriesBurned()
         {
-            throw new NotImplementedException();
+            CaloriesBurned = reps * 5;
+
+            return CaloriesBurned;
         }
     }
 }
