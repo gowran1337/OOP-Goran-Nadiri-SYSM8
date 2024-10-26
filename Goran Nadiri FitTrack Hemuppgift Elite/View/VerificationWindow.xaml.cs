@@ -10,11 +10,12 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
     public partial class VerificationWindow : Window
     {
 
-        public VerificationWindow(UserService userService)
+        public VerificationWindow(UserService userService, string verificationCode)
         {
             InitializeComponent();
-            DataContext = new VerificationWindowViewModel(userService);
-            
+            var viewModel = new VerificationWindowViewModel(userService);
+            viewModel.TheVerificationCode = verificationCode; // Set the verification code in the ViewModel
+            DataContext = viewModel; // Set DataContext for data binding
         }
     }
 }

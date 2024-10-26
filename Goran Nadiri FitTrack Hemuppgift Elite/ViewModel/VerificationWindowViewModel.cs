@@ -14,16 +14,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         public VerificationWindowViewModel(UserService userService)
         {
             this.userService = userService;
-            TheVerificationCode = GenerateFAcode();//skapar verifikationskoden när fönstrets öppnar
         }
-
-        public static string GenerateFAcode()
-        {
-            Random TheVerificationCode = new Random();
-            return TheVerificationCode.Next(1,1).ToString();
-        }
-
-
 
 
         private string _theVerificationCode;

@@ -47,12 +47,18 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 MessageBox.Show("Invalid username or password or 2FA code", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        public static string GenerateFAcode()
+        {
+            Random TheVerificationCode = new Random();
+            return TheVerificationCode.Next(1, 1).ToString();
+        }
         public void SignIn2FA()
         {
-            
-          
+            verificationCode = GenerateFAcode();
+            TheVerificationCode = verificationCode;
+
             MessageBox.Show("Verification code sent via email", "Very secure person!", MessageBoxButton.OK);
-            VerificationWindow verificationWindow = new VerificationWindow(userService);
+            VerificationWindow verificationWindow = new VerificationWindow(userService, verificationCode);
             verificationWindow.Show();
 
         }
