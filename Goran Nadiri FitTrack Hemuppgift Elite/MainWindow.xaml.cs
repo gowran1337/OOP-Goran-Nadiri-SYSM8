@@ -9,7 +9,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite
     /// </summary>
     public partial class MainWindow : Window
     {
-        internal static object ViewModel;
+        public static object ViewModel;
 
         public MainWindow()
         {

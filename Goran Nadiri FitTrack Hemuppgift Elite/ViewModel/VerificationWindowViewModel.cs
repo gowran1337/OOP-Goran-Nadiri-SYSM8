@@ -14,7 +14,9 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         public VerificationWindowViewModel(UserService userService)
         {
             this.userService = userService;
+
         }
+
 
 
         private string _theVerificationCode;

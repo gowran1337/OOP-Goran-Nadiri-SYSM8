@@ -12,14 +12,11 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
     {
         private UserService userService;
 
+
         public WorkoutWindow(UserService userService)
         {
-            this.userService = userService;
-        }
-
-        public WorkoutWindow(UserService userService, string theVerificationCode)
-        {
             InitializeComponent();
+
             WorkoutWindowViewModel WorkOutViewModel = new WorkoutWindowViewModel(userService);
             this.DataContext = WorkOutViewModel;
     

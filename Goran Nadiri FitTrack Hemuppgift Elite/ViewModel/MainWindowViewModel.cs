@@ -19,12 +19,13 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         public RelayCommand SignInCommand => new RelayCommand(execute => SignIn()); // knappar från XAML fil översätts till funktion i denna
         public RelayCommand OpenRegisterWindowCommand => new RelayCommand(execute => OpenRegisterWindow());
         public RelayCommand ForgotPasswordCommand => new RelayCommand(execute => OpenForgotPasswordWindow());
+        
         public RelayCommand SignIn2FAcommand => new RelayCommand(execute => SignIn2FA());
 
         public MainWindowViewModel(UserService userService)
         {
             this.userService = userService;
-            Users = userService.GetUsers();
+            Users = userService.GetUsers();            
         }
 
         public void OpenForgotPasswordWindow()
@@ -35,7 +36,8 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 
         public void SignIn()
         {
-            var User = Users.FirstOrDefault(u => u.Username == LoginUsername && u.Password == LoginPassword);// letar efter en user som har samma namn som inmatad text samt lösenord
+            var User = Users.FirstOrDefault(u => u.Username == LoginUsername && u.Password == LoginPassword
+);// letar efter en user som har samma namn som inmatad text samt lösenord
             if (User != null && TheVerificationCode == EnteredVerificationCode)
             {
                 WorkoutWindow workoutWindow = new WorkoutWindow(userService);
@@ -47,19 +49,20 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 MessageBox.Show("Invalid username or password or 2FA code", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        public static string GenerateFAcode()
+
+        public string GenerateFAcode()
         {
             Random TheVerificationCode = new Random();
-            return TheVerificationCode.Next(1, 1).ToString();
+            return TheVerificationCode.Next(1, 2).ToString(); // Generates a 6-digit code
         }
+
         public void SignIn2FA()
         {
-            verificationCode = GenerateFAcode();
-            TheVerificationCode = verificationCode;
-
-            MessageBox.Show("Verification code sent via email", "Very secure person!", MessageBoxButton.OK);
-            VerificationWindow verificationWindow = new VerificationWindow(userService, verificationCode);
-            verificationWindow.Show();
+            TheVerificationCode = GenerateFAcode();
+            MessageBox.Show($"Your verification code is {TheVerificationCode}", "Very secure person!", MessageBoxButton.OK);
+             
+            //VerificationWindow verificationWindow = new VerificationWindow(userService, TheVerificationCode);
+            //verificationWindow.Show();
 
         }
 
@@ -75,7 +78,6 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         private User _currentUser;
         private string _theVerificationCode;
         private string _enteredVerificationCode;
-        private string verificationCode;
 
         public string LoginUsername
         {
