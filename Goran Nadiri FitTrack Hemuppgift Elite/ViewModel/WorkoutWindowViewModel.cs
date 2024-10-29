@@ -14,6 +14,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
     {
         UserService userService;
         public ObservableCollection<User> Users;
+        public ObservableCollection<Workout> Workouts;
 
         public RelayCommand OpenAddWorkOutWindowCommand => new RelayCommand(execute => OpenWorkOutWindow());
         public RelayCommand UserDetailsCommand => new RelayCommand(execute => OpenUserDetailsWindow());
@@ -24,6 +25,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
 
             this.userService = userService;
             Users = userService.GetUsers();
+            Workouts = userService.CurrentUser.Workouts;
 
         }
 
@@ -52,6 +54,10 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
         private User _currentUser;
         private string _type;
         private DateTime _date;
+        private Workout _cardio;
+        private Workout _strength;
+        private Workout _workouts;
+        private string _duration;
 
         public User CurrentUser
         {
@@ -66,20 +72,32 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
             }
         }
 
-        //public Workout Workoutz
-        //{
-        //    get => _workoutz;
-        //    set
-        //    {
-        //        if (_workoutz != value)
-        //        {
-        //            _workoutz = value;
-        //            OnPropertyChanged();
-        //        }
+        public Workout Cardio
+        {
+            get => _cardio;
+            set
+            {
+                if (_cardio != value)
+                {
+                    _cardio = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public Workout Strength
+        {
+            get => _strength;
+            set
+            {
+                if (_strength != value)
+                {
+                    _strength = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
-        //    }
 
-        //}
         public string Type
         {
             get => _type;
@@ -94,6 +112,34 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
             }
 
         }
+        public string Duration
+        {
+            get => _duration;
+            set
+            {
+                if (_duration != value)
+                {
+                    _duration = value;
+                    OnPropertyChanged();
+                }
+
+            }
+
+        }
+        //public Workout Workouts1
+        //{
+        //    get => _workouts1;
+        //    set
+        //    {
+        //        if (_workouts != value)
+        //        {
+        //            _workouts = value;
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
+
+
         public DateTime Date
         {
             get => _date;

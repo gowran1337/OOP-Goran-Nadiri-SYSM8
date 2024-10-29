@@ -17,19 +17,18 @@
                 <Button Content="Add Workout" Command="{Binding OpenAddWorkOutWindowCommand}"/>
                 <Button Content="Remove Workout" Command="{Binding RemoveWorkOutCommand}"/>
             </StackPanel>
-            
-            <DataGrid ItemsSource="{Binding CurrentUser}" AutoGenerateColumns="False" >
+
+            <!--<TextBlock Text="{Binding Date}"/>
+            <TextBlock Text="{Binding Duration}"/>-->
+
+
+            <DataGrid ItemsSource="{Binding Workouts}" AutoGenerateColumns="False" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Workout Type" Binding="{Binding WorkoutType}" />
                     <DataGridTextColumn Header="Workout Date" Binding="{Binding Date}" />
+
                 </DataGrid.Columns>
             </DataGrid>
-
-
-
-
-
-
         </StackPanel>
         
     </Grid>

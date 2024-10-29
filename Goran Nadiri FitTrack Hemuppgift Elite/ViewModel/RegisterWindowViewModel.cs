@@ -1,5 +1,6 @@
 ﻿using Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model;
 using Goran_Nadiri_FitTrack_Hemuppgift_Elite.NVVM;
+using Goran_Nadiri_FitTrack_Hemuppgift_Elite.View;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -76,7 +77,9 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 Users.Add(newUser);
                 userService.AddUser(newUser);
                 MessageBox.Show("New user created!", "Succsess!", MessageBoxButton.OK);
-                
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+
             }
         }
         private string _username; //properties för alla strings, detta gör det möjligt att läsa in det som står i bindings i XAML filen

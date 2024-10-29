@@ -87,6 +87,8 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
                 {
                     User.Password = NewPassword;
                     MessageBox.Show("Password has been successfully changed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
                 }
             }
         }

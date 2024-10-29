@@ -3,6 +3,7 @@ using Goran_Nadiri_FitTrack_Hemuppgift_Elite.NVVM;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,26 +29,32 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         public void AddWorkout() //if else för cardio eller strenght
         {
 
-            
 
-            if(string.IsNullOrWhiteSpace(Notes?.Trim()) || string.IsNullOrWhiteSpace(Duration)
+
+            if (string.IsNullOrWhiteSpace(Notes?.Trim()) || string.IsNullOrWhiteSpace(Duration)
                 || SelectedDate == null)
             {
                 MessageBox.Show("Fill in all blank spaces", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                
+
             }
             else
             {
-                
-                var newWorkout = new Cardio()
-                {
-                    
-                    Duration = Duration,
-                    Date = SelectedDate,
-                    Notes = Notes,
-                    //calories burned (anropa metoden), duration kanske inte behövs
-                };
-                
+
+                var newWorkout = new Cardio(SelectedDate,
+                    WorkoutType,
+                    Duration,
+                   CaloriesBurned, Notes,
+                    Reps
+                    );
+
+                userService.AddWorkout(newWorkout);
+                MessageBox.Show("Workout added");
+
+
+
+
+
+
             }
         }
 
@@ -59,6 +66,8 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         private string _workoutType;
         private DateTime _selectedDate;
         private string _currentUser;
+        private int _reps;
+        private int _caloriesburned;
 
         public DateTime SelectedDate
         {
@@ -88,6 +97,35 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
             }
 
         }
+        public int Reps
+        {
+            get => _reps;
+            set
+            {
+                if (_reps != value)
+                {
+                    _reps = value;
+                    OnPropertyChanged();
+                }
+
+            }
+
+        }
+        public int CaloriesBurned
+        {
+            get => _caloriesburned;
+            set
+            {
+                if (_caloriesburned != value)
+                {
+                    _caloriesburned = value;
+                    OnPropertyChanged();
+                }
+
+            }
+
+        }
+
         public string Duration
         {
             get => _duration;

@@ -2,6 +2,19 @@
 {
     public class Cardio : Workout
     {
+
+
+        public Cardio(DateTime date, string workouttype, string duration, int caloriesburned, string notes, int reps)
+        : base(date, workouttype, duration, caloriesburned, notes, reps)
+        {
+            Date = date;
+            WorkoutType = workouttype;
+            Duration = duration;
+            CaloriesBurned = caloriesburned;
+            Notes = notes;
+            Reps = reps;
+        }
+
         public override int CalculateCaloriesBurned()
         {
             int duration = Convert.ToInt32(Duration);

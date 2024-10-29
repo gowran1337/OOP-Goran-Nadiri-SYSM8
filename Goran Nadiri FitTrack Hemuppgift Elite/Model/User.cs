@@ -14,8 +14,8 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
         public string Country { get; set; }
         public string SecurityQuestion { get; set; }
         public string SecurityAnswer { get; set; }
-
         public ObservableCollection<Workout> Workouts { get; set; }
+
 
         public User()
         {

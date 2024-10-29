@@ -41,9 +41,10 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 );// letar efter en user som har samma namn som inmatad text samt lösenord
             if (User != null && TheVerificationCode == EnteredVerificationCode)
             {
+                userService.CurrentUser = User;
                 WorkoutWindow workoutWindow = new WorkoutWindow(userService);//skickar data till nya fönstret via USERSERVICE
                 workoutWindow.Show(); //öppnar ´workout fönstret
-                CurrentUser = User;
+                
                 Application.Current.MainWindow.Close();
             }
             else
@@ -55,23 +56,21 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         public string GenerateFAcode()
         {
             Random TheVerificationCode = new Random();
-            return TheVerificationCode.Next(1, 2).ToString(); // Generates a 6-digit code
+            return TheVerificationCode.Next(1, 2).ToString(); // skapar 6 siffriga koden
         }
 
         public void SignIn2FA()
         {
             TheVerificationCode = GenerateFAcode();
-            MessageBox.Show($"Your verification code is {TheVerificationCode}", "Very secure person!", MessageBoxButton.OK);
-             
-            //VerificationWindow verificationWindow = new VerificationWindow(userService, TheVerificationCode);
-            //verificationWindow.Show();
-
+            MessageBox.Show($"Your verification code is {TheVerificationCode}", "Very secure person!", MessageBoxButton.OK);        
+            
         }
 
         public void OpenRegisterWindow()
         {
             RegisterWindow registerWindow = new RegisterWindow(userService);
-            registerWindow.Show();       
+            registerWindow.Show();
+            
         }
 
 
