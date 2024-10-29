@@ -32,6 +32,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         {
             ForgetPasswordWindow forgetPasswordWindow = new ForgetPasswordWindow(userService);
             forgetPasswordWindow.Show();
+            Application.Current.MainWindow.Close();
         }
 
         public void SignIn()
