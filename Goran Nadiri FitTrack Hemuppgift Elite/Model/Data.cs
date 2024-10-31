@@ -33,7 +33,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
                 Country = "Arabien",
                 SecurityQuestion = "Favorit frukt?",
                 SecurityAnswer = "äpple",
-                Workouts = new ObservableCollection<Workout>{new Cardio(DateTime.Now, "cardio", "90", 300, "överbra", 30),
+                Workouts = new ObservableCollection<Workout>{new Cardio(DateTime.Now, "Cardio", "90", 300, "överbra", 30),
                 new Strength(DateTime.Now, "Strength", "50", 300, "dunder pass", 40)}
 
             });
@@ -43,10 +43,10 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
         }
 
 
-        //public void AddUser(User newUser)
-        //    {
-        //        Users.Add(newUser);
-        //    }
+        public void AddUser(User newUser)
+        {
+            Users.Add(newUser);
+        }
 
         //    public void AddWorkout(Workout newWorkout)
         //    {

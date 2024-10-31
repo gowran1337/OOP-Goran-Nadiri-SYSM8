@@ -11,7 +11,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         UserService userService;
 
         public ObservableCollection<User> Users;
-
+        public ObservableCollection<Workout> Workouts => UserService.Instance.CurrentUser?.Workouts;
 
         public RelayCommand SignInCommand => new RelayCommand(execute => SignIn()); // knappar från XAML fil översätts till funktion i denna
         public RelayCommand OpenRegisterWindowCommand => new RelayCommand(execute => OpenRegisterWindow());
@@ -38,10 +38,11 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 );// letar efter en user som har samma namn som inmatad text samt lösenord
             if (User != null && TheVerificationCode == EnteredVerificationCode)
             {
-                WorkoutWindow workoutWindow = new WorkoutWindow(userService);//skickar data till nya fönstret via USERSERVICE
+                UserService.Instance.CurrentUser = User; // den som loggar in blir current user
+                WorkoutWindow workoutWindow = new WorkoutWindow(UserService.Instance);//skickar data till nya fönstret via USERSERVICE
                 workoutWindow.Show(); //öppnar ´workout fönstret
                 
-                Application.Current.MainWindow.Close();
+                //Application.Current.MainWindow.Close();
             }
             else
             {

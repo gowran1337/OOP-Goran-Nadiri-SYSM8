@@ -10,11 +10,12 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="Add your workouts!" FontSize="20"/>
             <DatePicker SelectedDate="{Binding SelectedDate}"/>
-            <ComboBox ItemsSource="{Binding WorkoutType, Mode=TwoWay}">
-                <ComboBoxItem Content="Workout Type" IsSelected="True" IsEnabled="False"/>
-                <ComboBoxItem Content="Strength"/>
-                <ComboBoxItem Content="Cardio"/>
-            </ComboBox>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Workout type"/>
+                <TextBox Text="{Binding WorkoutType}" Width="100"/>
+                
+            </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="3">
                 <Label Content="Duration"/>
                 <TextBox Width="120" Text="{Binding Duration}"/>

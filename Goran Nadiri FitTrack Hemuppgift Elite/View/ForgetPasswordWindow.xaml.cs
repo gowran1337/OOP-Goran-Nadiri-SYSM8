@@ -18,7 +18,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
         public ForgetPasswordWindow(UserService userService)
         {
             InitializeComponent();
-            ForgetPasswordViewModel forgetPasswordViewModel = new ForgetPasswordViewModel(userService);
+            ForgetPasswordViewModel forgetPasswordViewModel = new ForgetPasswordViewModel(UserService.Instance);
             this.DataContext = forgetPasswordViewModel;
         }
     }

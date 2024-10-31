@@ -9,8 +9,8 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
     internal class WorkoutWindowViewModel : ViewModelBase
     {
 
-        UserService userService;
-        public ObservableCollection<User> Users;
+        //UserService userService;
+        //public ObservableCollection<User> Users;
         
         public ObservableCollection<Workout> Workouts => UserService.Instance.CurrentUser?.Workouts;
 
@@ -19,11 +19,10 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
         public RelayCommand AppInfoCommand => new RelayCommand(execute => ShowAppInfo());
 
 
-        public WorkoutWindowViewModel(UserService userService)
+        public WorkoutWindowViewModel(UserService instance)
         {
 
-            this.userService = userService;
-            Users = userService.GetUsers();
+           
             
 
         }
@@ -31,13 +30,13 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
 
         public void OpenUserDetailsWindow()
         {
-            UserDetailsWindow userDetailsWindow = new(userService);
+            UserDetailsWindow userDetailsWindow = new(UserService.Instance);
             userDetailsWindow.Show();
         }
 
         public void OpenWorkOutWindow()
         {
-            AddWorkoutWindow addWorkoutWindow = new(userService);
+            AddWorkoutWindow addWorkoutWindow = new(UserService.Instance);
             addWorkoutWindow.Show();
         }
 
@@ -58,6 +57,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
         private Workout _strength;
         private Workout _workouts;
         private string _duration;
+        private string _workouttypes;
 
         public User CurrentUser
         {
@@ -70,6 +70,20 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
                     OnPropertyChanged();
                 }
             }
+        }
+        public string WorkoutTypes
+        {
+            get => _workouttypes;
+            set
+            {
+                if (_workouttypes != value)
+                {
+                    _workouttypes = value;
+                    OnPropertyChanged();
+                }
+
+            }
+
         }
 
         public Workout Cardio

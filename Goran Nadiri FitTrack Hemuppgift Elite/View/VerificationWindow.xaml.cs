@@ -13,7 +13,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
         public VerificationWindow(UserService userService, string TheVerificationCode)
         {
             InitializeComponent();
-            VerificationWindowViewModel verificationWindowViewModel = new VerificationWindowViewModel(userService);
+            VerificationWindowViewModel verificationWindowViewModel = new VerificationWindowViewModel(UserService.Instance);
             this.DataContext = verificationWindowViewModel;
 
         }

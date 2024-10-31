@@ -24,7 +24,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
         public AddWorkoutWindow(UserService userService)
         {
             InitializeComponent();
-            AddWorkoutWindowViewModel addWorkoutWindowViewModel = new AddWorkoutWindowViewModel(userService);
+            AddWorkoutWindowViewModel addWorkoutWindowViewModel = new AddWorkoutWindowViewModel(UserService.Instance);
             this.DataContext = addWorkoutWindowViewModel;
             
         }

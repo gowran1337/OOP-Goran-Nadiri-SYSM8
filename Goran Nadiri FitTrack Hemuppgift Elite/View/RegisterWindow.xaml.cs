@@ -12,7 +12,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
         public RegisterWindow(UserService userService)
         {
             InitializeComponent();
-            RegisterWindowViewModel RegViewModel = new RegisterWindowViewModel(userService);
+            RegisterWindowViewModel RegViewModel = new RegisterWindowViewModel(UserService.Instance);
             this.DataContext = RegViewModel;
         }
     }

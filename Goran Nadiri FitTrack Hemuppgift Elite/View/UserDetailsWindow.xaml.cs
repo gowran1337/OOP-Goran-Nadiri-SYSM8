@@ -15,7 +15,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
         public UserDetailsWindow(UserService userService)
         {
             InitializeComponent();
-            UserDetailsViewModel userDetailsViewModel = new(userService);
+            UserDetailsViewModel userDetailsViewModel = new(UserService.Instance);
             this.DataContext = userDetailsViewModel;
         }
     }

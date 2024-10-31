@@ -16,19 +16,20 @@
             <StackPanel Orientation="Horizontal" Margin="10">
                 <Button Content="Add Workout" Command="{Binding OpenAddWorkOutWindowCommand}"/>
                 <Button Content="Remove Workout" Command="{Binding RemoveWorkOutCommand}"/>
+                <Button Content="Show Workout Details" Command="{Binding ShowWorkoutDetailsCommand}"/>
             </StackPanel>
 
-            <!--<TextBlock Text="{Binding Date}"/>
-            <TextBlock Text="{Binding Duration}"/>-->
+            
 
 
-            <DataGrid ItemsSource="{Binding Workouts}" AutoGenerateColumns="False" >
+            <DataGrid ItemsSource="{Binding Workouts}" SelectedItem="{Binding SelectedWorkout}" AutoGenerateColumns="False" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Workout Type" Binding="{Binding WorkoutType}" />
                     <DataGridTextColumn Header="Workout Date" Binding="{Binding Date}" />
-
+                    
                 </DataGrid.Columns>
             </DataGrid>
+            
         </StackPanel>
         
     </Grid>

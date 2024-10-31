@@ -17,7 +17,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 
         public ObservableCollection<User> Users;
 
-
+        //public ObservableCollection<string> WorkoutTypes { get; } = new ObservableCollection<string> { "Cardio", "Strength" };
         public RelayCommand AddWorkoutCommand => new RelayCommand(execute => AddWorkout());
 
         public AddWorkoutWindowViewModel(UserService userService)
@@ -29,37 +29,36 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         public void AddWorkout() //if else för cardio eller strenght
         {
 
-
-
             if (string.IsNullOrWhiteSpace(Notes?.Trim()) || string.IsNullOrWhiteSpace(Duration)
                 || SelectedDate == null)
             {
                 MessageBox.Show("Fill in all blank spaces", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
-            else
+            Workout newWorkout;
+            
             {
+                if (WorkoutType == "Cardio")
+                {
+                     newWorkout = new Cardio(SelectedDate, WorkoutType, Duration, CaloriesBurned, Notes, Reps);
 
-                var newWorkout = new Cardio(SelectedDate,
-                    WorkoutType,
-                    Duration,
-                   CaloriesBurned, Notes,
-                    Reps
-                    );
+                }
+                else if (WorkoutType == "Strength")
+                {
+                     newWorkout = new Strength(SelectedDate, WorkoutType, Duration, CaloriesBurned, Notes, Reps);
+                }
+                else
+                {
+                    MessageBox.Show("Invalid workout type", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                UserService.Instance.CurrentUser?.Workouts.Add(newWorkout);
 
-                //userService.AddWorkout(newWorkout);
-                MessageBox.Show("Workout added");
-
-
-
-
+                MessageBox.Show("Workout added successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
 
             }
         }
-
-
-
 
         private string _notes;
         private string _duration;
@@ -68,6 +67,9 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         private string _currentUser;
         private int _reps;
         private int _caloriesburned;
+        private string _strength;
+        private string _workoutTypes;
+        
 
         public DateTime SelectedDate
         {
@@ -95,8 +97,36 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 }
 
             }
+        }
+        public string WorkoutTypes
+        {
+            get => _workoutTypes;
+            set
+            {
+                if (_workoutTypes != value)
+                {
+                    _workoutTypes = value;
+                    OnPropertyChanged();
+                }
+
+            }
+        }
+
+        public string Strength
+        {
+            get => _strength;
+            set
+            {
+                if (_strength != value)
+                {
+                    _strength = value;
+                    OnPropertyChanged();
+                }
+
+            }
 
         }
+
         public int Reps
         {
             get => _reps;
