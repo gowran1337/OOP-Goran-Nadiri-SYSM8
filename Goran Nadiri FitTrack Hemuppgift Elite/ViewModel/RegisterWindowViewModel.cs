@@ -75,7 +75,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 };
 
                 Users.Add(newUser);
-                userService.AddUser(newUser);
+                //userService.AddUser(newUser);
                 MessageBox.Show("New user created!", "Succsess!", MessageBoxButton.OK);
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();

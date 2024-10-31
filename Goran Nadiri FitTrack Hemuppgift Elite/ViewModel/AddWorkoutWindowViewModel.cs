@@ -47,7 +47,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                     Reps
                     );
 
-                userService.AddWorkout(newWorkout);
+                //userService.AddWorkout(newWorkout);
                 MessageBox.Show("Workout added");
 
 

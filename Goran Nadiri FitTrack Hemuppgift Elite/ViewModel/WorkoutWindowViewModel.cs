@@ -1,33 +1,33 @@
 ﻿using Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model;
 using Goran_Nadiri_FitTrack_Hemuppgift_Elite.NVVM;
-using Goran_Nadiri_FitTrack_Hemuppgift_Elite.View;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
-using static Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model.Data;
 using Workout = Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model.Workout;
 
 namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
 {
     internal class WorkoutWindowViewModel : ViewModelBase
     {
+
         UserService userService;
         public ObservableCollection<User> Users;
-        public ObservableCollection<Workout> Workouts;
+        
+        public ObservableCollection<Workout> Workouts => UserService.Instance.CurrentUser?.Workouts;
 
         public RelayCommand OpenAddWorkOutWindowCommand => new RelayCommand(execute => OpenWorkOutWindow());
         public RelayCommand UserDetailsCommand => new RelayCommand(execute => OpenUserDetailsWindow());
         public RelayCommand AppInfoCommand => new RelayCommand(execute => ShowAppInfo());
+
 
         public WorkoutWindowViewModel(UserService userService)
         {
 
             this.userService = userService;
             Users = userService.GetUsers();
-            Workouts = userService.CurrentUser.Workouts;
+            
 
         }
+
 
         public void OpenUserDetailsWindow()
         {

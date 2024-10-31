@@ -1,11 +1,8 @@
 ﻿using Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model;
 using Goran_Nadiri_FitTrack_Hemuppgift_Elite.NVVM;
 using Goran_Nadiri_FitTrack_Hemuppgift_Elite.View;
-using Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel;
-using Microsoft.Azure.Amqp.Framing;
 using System.Collections.ObjectModel;
 using System.Windows;
-using Data = Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model.Data;
 
 namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 {
@@ -41,7 +38,6 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 );// letar efter en user som har samma namn som inmatad text samt lösenord
             if (User != null && TheVerificationCode == EnteredVerificationCode)
             {
-                userService.CurrentUser = User;
                 WorkoutWindow workoutWindow = new WorkoutWindow(userService);//skickar data till nya fönstret via USERSERVICE
                 workoutWindow.Show(); //öppnar ´workout fönstret
                 

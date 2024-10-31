@@ -1,16 +1,25 @@
 ﻿using System.Collections.ObjectModel;
-using static Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model.Data;
+
 
 namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
 {
     public class UserService
     {
+
+        private static UserService _instance;
+
+        public static UserService Instance => _instance ??= new UserService();
+
+
         public ObservableCollection<User> Users { get; } = new ObservableCollection<User>(); //skapar listan Users
+
+
         //public ObservableCollection<Workout> Workouts { get; } = new ObservableCollection<Workout>();
         public ObservableCollection<User> GetUsers() { return Users; }
-        //public ObservableCollection<Workout> GetWorkouts() { return CurrentUser.Workouts; }
 
-        
+
+
+
         public User CurrentUser { get; set; }
 
         public UserService()
@@ -29,54 +38,56 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
 
             });
 
-            
-           
-        } 
 
-        public void AddUser(User newUser)
-        {
-            Users.Add(newUser);
+
         }
-  
-        public void AddWorkout(Workout newWorkout)
+
+
+        //public void AddUser(User newUser)
+        //    {
+        //        Users.Add(newUser);
+        //    }
+
+        //    public void AddWorkout(Workout newWorkout)
+        //    {
+
+        //        if (CurrentUser != null)
+        //        {
+        //            CurrentUser.Workouts.Add(newWorkout);
+        //        }
+        //    }
+
+
+
+        //}
+        public class Data
         {
-            
-            if (CurrentUser != null)
+
+            public class Admin : User
             {
-                CurrentUser.Workouts.Add(newWorkout);
+                public void ManageAllWorkouts()
+                {
+
+                }
             }
-        }
 
-
-
-    }
-    public class Data
-    {   
-
-        public class Admin : User
-        {
-            public void ManageAllWorkouts()
+            public abstract class Workout
             {
+                public DateTime Date { get; set; }
+                public string Type { get; set; }
+                public string Duration { get; set; }
+                public int CaloriesBurned { get; set; }
+                public string Notes { get; set; }
+                public int Reps { get; set; }
+
+
+                public abstract int CalculateCaloriesBurned();
+
+
+
 
             }
+
         }
-
-        public abstract class Workout
-        {
-            public DateTime Date  { get; set; }
-            public string Type {  get; set; }
-            public string Duration {  get; set; }
-            public int CaloriesBurned { get; set; }
-            public string Notes {  get; set; }
-            public int Reps { get; set; }
-
-
-            public abstract int CalculateCaloriesBurned();
-            
-            
-            
- 
-        }
-       
     }
 }
