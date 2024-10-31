@@ -11,11 +11,24 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
         public ObservableCollection<User> Users { get; set; }
 
         public RelayCommand SaveCommand => new RelayCommand(execute => UpdateUserInfo());
+        public RelayCommand ReturnCommand => new RelayCommand(execute => Return());
 
         public UserDetailsViewModel(UserService userService)
         {
             this.userService = userService;
         }
+        public void Return()
+        {
+            foreach (Window window in Application.Current.Windows)  //loopar igenom fönster
+            {
+                if (window is UserDetailsWindow) // stänger fönstret om det är detta fönstret
+                {
+                    window.Close();
+                    break;
+                }
+            }
+        }
+
 
         public bool IsUsernameTaken(string username)//KANSKE INTE FUNKAR
         {

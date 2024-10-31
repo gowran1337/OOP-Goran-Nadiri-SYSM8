@@ -18,4 +18,5 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.NVVM
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
+
 }

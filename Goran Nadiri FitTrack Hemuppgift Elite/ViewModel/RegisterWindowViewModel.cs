@@ -81,6 +81,14 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 mainWindow.Show();
 
             }
+            foreach (Window window in Application.Current.Windows)  //loopar igenom fönster
+            {
+                if (window is RegisterWindow) // stänger fönstret om det är detta fönstret
+                {
+                    window.Close();
+                    break;
+                }
+            }
         }
         private string _username; //properties för alla strings, detta gör det möjligt att läsa in det som står i bindings i XAML filen
         private string _password;

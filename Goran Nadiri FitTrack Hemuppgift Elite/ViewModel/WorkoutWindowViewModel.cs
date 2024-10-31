@@ -7,37 +7,41 @@ using Workout = Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model.Workout;
 namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
 {
     internal class WorkoutWindowViewModel : ViewModelBase
-    {
-
-        //UserService userService;
-        //public ObservableCollection<User> Users;
-        
-        public ObservableCollection<Workout> Workouts => UserService.Instance.CurrentUser?.Workouts;
+    {  
+        public ObservableCollection<Workout> Workouts => UserService.Instance.CurrentUser?.Workouts; // hämtar listan workouts så man kan använda sig av den
 
         public RelayCommand OpenAddWorkOutWindowCommand => new RelayCommand(execute => OpenWorkOutWindow());
         public RelayCommand UserDetailsCommand => new RelayCommand(execute => OpenUserDetailsWindow());
         public RelayCommand AppInfoCommand => new RelayCommand(execute => ShowAppInfo());
-
+        public RelayCommand RemoveWorkOutCommand => new RelayCommand(execute => RemoveWorkout());
+        public RelayCommand ShowWorkoutDetailsCommand => new RelayCommand(execute => OpenWorkoutDetailsWindow());
 
         public WorkoutWindowViewModel(UserService instance)
         {
 
-           
-            
-
         }
+        public void OpenWorkoutDetailsWindow()
+        {
+            WorkoutDetailsWindow workoutDetailsWindow = new(UserService.Instance);
+            workoutDetailsWindow.Show();
 
+            
+        }
 
         public void OpenUserDetailsWindow()
         {
             UserDetailsWindow userDetailsWindow = new(UserService.Instance);
             userDetailsWindow.Show();
+
+            
         }
 
         public void OpenWorkOutWindow()
         {
             AddWorkoutWindow addWorkoutWindow = new(UserService.Instance);
             addWorkoutWindow.Show();
+
+            
         }
 
         public void ShowAppInfo()
@@ -48,16 +52,28 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
                 "stay tuned for our premium features which are: coloured name titles and bug fixes! only 400kr/month!! (3 months uppsägningstid) ",
                 "You are cool!", MessageBoxButton.OK);
         }
+        public void RemoveWorkout()
+        {
+            if (SelectedWorkout != null)
+            {
+                Workouts.Remove(SelectedWorkout);
+                MessageBox.Show("Workout removed successfully!", "Success", MessageBoxButton.OK);
+            }
+            else
+            {
+                MessageBox.Show("Please select a workout to remove.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
 
-        //private Workout _workoutz;
+        
         private User _currentUser;
-        private string _type;
+        
         private DateTime _date;
         private Workout _cardio;
         private Workout _strength;
         private Workout _workouts;
-        private string _duration;
-        private string _workouttypes;
+        
+        private Workout _selectedWorkout;
 
         public User CurrentUser
         {
@@ -71,19 +87,19 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
                 }
             }
         }
-        public string WorkoutTypes
+        
+        
+        public Workout SelectedWorkout
         {
-            get => _workouttypes;
+            get => _selectedWorkout;
             set
             {
-                if (_workouttypes != value)
+                if (_selectedWorkout != value)
                 {
-                    _workouttypes = value;
+                    _selectedWorkout = value;
                     OnPropertyChanged();
                 }
-
             }
-
         }
 
         public Workout Cardio
@@ -111,49 +127,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
             }
         }
 
-
-        public string Type
-        {
-            get => _type;
-            set
-            {
-                if (_type != value)
-                {
-                    _type = value;
-                    OnPropertyChanged();
-                }
-
-            }
-
-        }
-        public string Duration
-        {
-            get => _duration;
-            set
-            {
-                if (_duration != value)
-                {
-                    _duration = value;
-                    OnPropertyChanged();
-                }
-
-            }
-
-        }
-        //public Workout Workouts1
-        //{
-        //    get => _workouts1;
-        //    set
-        //    {
-        //        if (_workouts != value)
-        //        {
-        //            _workouts = value;
-        //            OnPropertyChanged();
-        //        }
-        //    }
-        //}
-
-
+        
         public DateTime Date
         {
             get => _date;

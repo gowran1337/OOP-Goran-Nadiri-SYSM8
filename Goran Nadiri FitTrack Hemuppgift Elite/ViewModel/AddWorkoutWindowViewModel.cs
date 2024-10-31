@@ -35,6 +35,14 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 MessageBox.Show("Fill in all blank spaces", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
+            else if (!IsNumeric(Duration))
+            {
+                MessageBox.Show("Write duration in minutes", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (!IsNumeric(Reps))
+            {
+                MessageBox.Show("Write duration in minutes", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             Workout newWorkout;
             
             {
@@ -59,13 +67,23 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 
             }
         }
-
+        bool IsNumeric(string input)
+        {
+            foreach (char c in input)
+            {
+                if (!char.IsDigit(c))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         private string _notes;
         private string _duration;
         private string _workoutType;
         private DateTime _selectedDate;
         private string _currentUser;
-        private int _reps;
+        private string _reps;
         private int _caloriesburned;
         private string _strength;
         private string _workoutTypes;
@@ -127,7 +145,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 
         }
 
-        public int Reps
+        public string Reps
         {
             get => _reps;
             set

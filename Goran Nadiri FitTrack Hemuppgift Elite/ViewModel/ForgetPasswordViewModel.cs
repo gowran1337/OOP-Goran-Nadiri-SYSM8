@@ -91,6 +91,14 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
                     mainWindow.Show();
                 }
             }
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window is ForgetPasswordWindow) 
+                {
+                    window.Close();
+                    break;
+                }
+            }
         }
         static bool ContainsSpecialCharacters(string NewPassword)
         {

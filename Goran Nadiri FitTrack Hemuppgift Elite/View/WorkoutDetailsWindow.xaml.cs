@@ -4,19 +4,17 @@ using System.Windows;
 namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
 {
     /// <summary>
-    /// Interaction logic for WorkoutWindow.xaml
+    /// Interaction logic for WorkoutDetailsWindow.xaml
     /// </summary>
-    public partial class WorkoutWindow : Window
+    public partial class WorkoutDetailsWindow : Window
+
     {
         private UserService userService;
 
-
-        public WorkoutWindow(UserService userService)
+        public WorkoutDetailsWindow(UserService userService)
         {
             InitializeComponent();
-
             DataContext = new WorkoutWindowViewModel(UserService.Instance);
-            
         }
     }
 }

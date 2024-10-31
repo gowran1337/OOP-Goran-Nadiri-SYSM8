@@ -16,13 +16,20 @@
                 <TextBox Text="{Binding WorkoutType}" Width="100"/>
                 
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="3">
+            <StackPanel Orientation="Horizontal">
                 <Label Content="Duration"/>
                 <TextBox Width="120" Text="{Binding Duration}"/>
             </StackPanel>
-                <Label Content="Notes" HorizontalAlignment="Center"/>
+            
+            <StackPanel Orientation="Horizontal" Margin="3">
+                <Label Content="Reps"/>
+                <TextBox Width="120" Text="{Binding Reps}"/>
+            </StackPanel>
+            
+            <Label Content="Notes" HorizontalAlignment="Center"/>
             <TextBox Height="70" Text="{Binding Notes}"/>
             <Button Content="Add" Command="{Binding AddWorkoutCommand}"/>
+            
         </StackPanel>
     </Grid>
 </Window>

@@ -15,8 +15,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 
         public RelayCommand SignInCommand => new RelayCommand(execute => SignIn()); // knappar från XAML fil översätts till funktion i denna
         public RelayCommand OpenRegisterWindowCommand => new RelayCommand(execute => OpenRegisterWindow());
-        public RelayCommand ForgotPasswordCommand => new RelayCommand(execute => OpenForgotPasswordWindow());
-        
+        public RelayCommand ForgotPasswordCommand => new RelayCommand(execute => OpenForgotPasswordWindow());   
         public RelayCommand SignIn2FAcommand => new RelayCommand(execute => SignIn2FA());
 
         public MainWindowViewModel(UserService userService)
@@ -24,7 +23,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
             this.userService = userService;
             Users = userService.GetUsers();            
         }
-
+       
         public void OpenForgotPasswordWindow()
         {
             ForgetPasswordWindow forgetPasswordWindow = new ForgetPasswordWindow(userService);
@@ -42,7 +41,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 WorkoutWindow workoutWindow = new WorkoutWindow(UserService.Instance);//skickar data till nya fönstret via USERSERVICE
                 workoutWindow.Show(); //öppnar ´workout fönstret
                 
-                //Application.Current.MainWindow.Close();
+                Application.Current.MainWindow.Close();
             }
             else
             {
@@ -67,7 +66,8 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         {
             RegisterWindow registerWindow = new RegisterWindow(userService);
             registerWindow.Show();
-            
+            Application.Current.MainWindow.Close();
+
         }
 
 

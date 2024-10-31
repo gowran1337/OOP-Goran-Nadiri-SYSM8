@@ -36,7 +36,7 @@
                 <ComboBoxItem Content="Arabien"/>
             </ComboBox>
             <Button Content="Save" Command="{Binding SaveCommand}"/>
-            <Button Content="Back"/>
+            <Button Content="Back" Command="{Binding ReturnCommand}"/>
             
 
 
