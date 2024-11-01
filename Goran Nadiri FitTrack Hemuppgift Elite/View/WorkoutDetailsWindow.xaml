@@ -3,30 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.View" xmlns:viewmodel="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel" d:DataContext="{d:DesignInstance Type=local:WorkoutWindowViewModel}"
+        xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.View" xmlns:viewmodel="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:WorkoutDetailsWindowViewModel}"
         mc:Ignorable="d"
-        Title="WorkoutDetailsWindow" Height="450" Width="800">
-    
+        Title="WorkoutDetailsWindow" Height="450" Width="800" Background="Crimson">
     <Grid>
+        <Grid>
 
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            
-            <TextBlock Text="Your workouts" FontSize="30" HorizontalAlignment="Center"/>
-            <Button Content="Edit Workouts" Command="{Binding EditCommand}" Width="100"/>
-            <Button Content="Save" Command="{Binding SaveCommand}" Width="100"/>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 
-            <DataGrid ItemsSource="{Binding Workouts}" IsEnabled="{Binding IsEditing}"  AutoGenerateColumns="False" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header=" Type" Binding="{Binding WorkoutType}" />
-                <DataGridTextColumn Header=" Date" Binding="{Binding Date}" />
-                <DataGridTextColumn Header=" Duration" Binding="{Binding Duration}" />
-                <DataGridTextColumn Header=" CaloriesBurned" Binding="{Binding CaloriesBurned}" />
-                <DataGridTextColumn Header=" Notes" Binding="{Binding Notes}"/>
-                <DataGridTextColumn Header="Reps" Binding="{Binding Reps}"/>
-                </DataGrid.Columns>
+                <TextBlock Text="Your workouts"  Foreground="LightGray" FontSize="30" HorizontalAlignment="Center"/>
+                <Button Content="Edit Workouts" Command="{Binding EditCommand}" Width="100"/>
+                <Button Content="Save" Command="{Binding SaveCommand}" Width="100"/>
                 
-        </DataGrid>
-        </StackPanel> 
-        <Button Content="Back" Command="{Binding ReturnCommand}" Width="100" VerticalAlignment="Top" Margin="100"/>
+
+
+                <DataGrid ItemsSource="{Binding Workouts}" AutoGenerateColumns="False" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header=" Type" Binding="{Binding WorkoutType}" IsReadOnly="{Binding IsEditing}"/>
+                        <DataGridTextColumn Header=" Date" Binding="{Binding Date}" IsReadOnly="{Binding IsEditing}"/>
+                        <DataGridTextColumn Header=" Duration" Binding="{Binding Duration}" IsReadOnly="{Binding IsEditing}" />
+                        <DataGridTextColumn Header=" CaloriesBurned" Binding="{Binding CaloriesBurned}" IsReadOnly="{Binding IsEditing}" />
+                        <DataGridTextColumn Header=" Notes" Binding="{Binding Notes}" IsReadOnly="{Binding IsEditing}"/>
+                        <DataGridTextColumn Header="Reps" Binding="{Binding Reps}" IsReadOnly="{Binding IsEditing}"/>
+                    </DataGrid.Columns>
+
+                </DataGrid>
+            </StackPanel>
+            <Button Content="Back" Command="{Binding ReturnCommand}" Width="100" VerticalAlignment="Top" Margin="100"/>
+        </Grid>
     </Grid>
 </Window>

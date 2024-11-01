@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.View" xmlns:vm="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel"
         mc:Ignorable="d"
-        Title="RegisterWindow" Height="450" Width="800">
+        Title="RegisterWindow" Height="450" Width="800" Background="Crimson">
     
 
     <Grid>
@@ -14,7 +14,7 @@
             <RowDefinition Height="127*"/>
         </Grid.RowDefinitions>
         <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,129,0,0" Grid.RowSpan="2">
-            <TextBlock Text="Register user" FontSize="30" Width="200" TextAlignment="Center"/>
+            <TextBlock Text="Register user" Foreground="LightGray" FontSize="30" Width="200" TextAlignment="Center"/>
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Username"/>
@@ -53,6 +53,7 @@
             </StackPanel>
 
             <Button Content="Register User" Command="{Binding RegisterCommand}"/>
+            <Button Content="Back" Command="{Binding BackCommand}"/>
 
         </StackPanel>
     </Grid>

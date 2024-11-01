@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.View" xmlns:viewmodel="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel" d:DataContext="{d:DesignInstance Type=local:WorkoutWindowViewModel}"
         mc:Ignorable="d"
-        Title="WorkoutWindow" Height="450" Width="800">
+        Title="WorkoutWindow" Height="450" Width="800" Background="Crimson">
     
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
         <Button Content="Sign out" Command="{Binding SignOutCommand}" Margin="70"/>
-            <TextBlock Text="{Binding Username}" FontSize="20"/>
+            <TextBlock Text="{Binding Username}" Foreground="LightGray" FontSize="20"/>
             <Button Content="Show User Details" Command="{Binding UserDetailsCommand}" Width="100"/>
             <Button Content="Information Station" Command="{Binding AppInfoCommand}"  Width="120"/>
 

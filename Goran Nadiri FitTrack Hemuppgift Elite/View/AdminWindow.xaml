@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.View" xmlns:viewmodel="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AdminWindowViewModel}"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="450" Width="800">
+        Title="AdminWindow" Height="450" Width="800" Background="Crimson">
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Content="Sign out" Command="{Binding SignOutCommand}" Width="100" Margin="30"/>
-            <TextBlock Text="Admin view mode" FontSize="20"/>
+            <TextBlock Text="Admin view mode" Foreground="LightGray" FontSize="20"/>
             <Button Content="Remove" Command="{Binding RemoveCommand}" Width="100"/>
             <DataGrid ItemsSource="{Binding AllWorkouts}" IsEnabled="{Binding IsEditing}" SelectedItem="{Binding SelectedWorkout}"  AutoGenerateColumns="False" >
                 <DataGrid.Columns>

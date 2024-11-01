@@ -13,17 +13,14 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         public RelayCommand SaveCommand => new RelayCommand(execute => Save());
         public RelayCommand EditCommand => new RelayCommand(execute => Edit());
         public RelayCommand ReturnCommand => new RelayCommand(execute => Return());
+        
 
-       
-
-
-
-        private void Edit()
+        public void Edit()
         {
             IsEditing = true;        
         }
 
-        private void Save()
+        public void Save()
         {
             IsEditing = false;    
             MessageBox.Show("Changes saved successfully!", "Save", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -44,10 +41,24 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         private DateTime _date;
         private Workout _cardio;
         private Workout _strength;
+        private Workout _workouttype;
         private string _notes;
         private int _caloriesburned;
-        private bool _isEditing = false;
+        private bool _isEditing;
         private Workout _selectedWorkout;
+
+        public Workout WorkoutType
+        {
+            get => _workouttype;
+            set
+            {
+                if (_workouttype != value)
+                {
+                    _workouttype = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public Workout SelectedWorkout
         {
@@ -86,6 +97,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 {
                     _isEditing = value;
                     OnPropertyChanged();
+                    OnPropertyChanged(nameof(IsEditing));
                 }
             }
         }

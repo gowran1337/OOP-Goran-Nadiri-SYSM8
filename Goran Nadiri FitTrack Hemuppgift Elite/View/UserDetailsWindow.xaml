@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.View" d:DataContext="{d:DesignInstance Type=local:UserDetailsViewModel}"
         mc:Ignorable="d"
-        Title="UserDetailsWindow" Height="450" Width="800">
+        Title="UserDetailsWindow" Height="450" Width="800" Background="Crimson">
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal">
             <TextBlock Text="{Binding CurrentUsername}" FontSize="13"/>
                 <TextBlock Text="{Binding Country}" FontSize="13"/>
             </StackPanel>
-            <Label Content="User Details" HorizontalAlignment="Center" FontSize="20"/>
+            <Label Content="User Details" Foreground="LightGray" HorizontalAlignment="Center" FontSize="20"/>
             
             <StackPanel Orientation="Horizontal">
                 <Label Content="Change username"/>

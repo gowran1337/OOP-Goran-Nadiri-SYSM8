@@ -14,17 +14,28 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         public ObservableCollection<User> Users { get; set; }
 
         public RelayCommand RegisterCommand => new RelayCommand(execute => Register()); //översätter knappen från XAML filen till en funktion här i viewmodel
+        public RelayCommand BackCommand => new RelayCommand(execute => Back());
 
         public RegisterWindowViewModel(UserService userService)
         {
             this.userService = userService;
             Users = userService.GetUsers();
         }
-
-
+        public void Back()
+        {
+            foreach (Window window in Application.Current.Windows)  //loopar igenom fönster
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                if (window is RegisterWindow) // stänger fönstret om det är detta fönstret
+                {
+                    window.Close();
+                    break;
+                }
+            }
+        }
         public RegisterWindowViewModel()
         {                                                   
-
         }
         public bool IsUsernameTaken(string username) //metod för att se om username redan finns
         {
@@ -44,23 +55,27 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
             else if (Password.Length < 8)
             {
                 MessageBox.Show("Password must contain 8 characters", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
+                return;
             }
             else if (!Password.Any(char.IsDigit))
             {
                 MessageBox.Show("Password must contain a digit", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
             else if (!ContainsSpecialCharacters(Password))
             {
                 MessageBox.Show("Password must contain a special character", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
             else if (Password != ConfirmPassword)
             {
                 MessageBox.Show("Passwords do not match", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
             else if (IsUsernameTaken(Username))
             {
                 MessageBox.Show("Username already taken", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
 
             else
@@ -75,9 +90,10 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 };
 
                 Users.Add(newUser);
-                //userService.AddUser(newUser);
+                UserService.Instance.AddUser(newUser);
+               
                 MessageBox.Show("New user created!", "Succsess!", MessageBoxButton.OK);
-                MainWindow mainWindow = new MainWindow();
+                MainWindow mainWindow = new();
                 mainWindow.Show();
 
             }

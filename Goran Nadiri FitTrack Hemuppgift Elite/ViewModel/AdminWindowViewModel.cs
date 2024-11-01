@@ -8,9 +8,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 {
     internal class AdminWindowViewModel : ViewModelBase
     {
-
-
-        public RelayCommand SignOutCommand => new RelayCommand(execute => SignOut());
+        public RelayCommand SignOutCommand => new RelayCommand(execute => SignOut()); // metoder för knapparna
         public RelayCommand RemoveCommand => new RelayCommand(execute => Remove());
 
         public ObservableCollection<Workout> Workouts => UserService.Instance.CurrentUser?.Workouts; // hämtar listan workouts så man kan använda sig av den   
@@ -21,19 +19,17 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
             this.userService = userService;
             AllWorkouts = userService.GetAllWorkouts();
         }
-
         private void Remove()
         {
             if (SelectedWorkout != null)
             {
-                // Find the user who owns this workout
+                //letar efter ägaren till workouten
                 var userWithWorkout = userService.Users.FirstOrDefault(user => user.Workouts.Contains(SelectedWorkout));
                 if (userWithWorkout != null)
-                {
-                    // Remove from user's workout list and from the AllWorkouts collection
+                {           
                     userWithWorkout.Workouts.Remove(SelectedWorkout);
                     AllWorkouts.Remove(SelectedWorkout);
-                    MessageBox.Show("Workout removed successfully!", "Success", MessageBoxButton.OK);
+                    MessageBox.Show("Workout removed !", "Wow!!", MessageBoxButton.OK);
                 }
             }
         }
@@ -51,7 +47,6 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 }
             }
         }
-
         private User _username;
         private string _notes;
         private string _duration;

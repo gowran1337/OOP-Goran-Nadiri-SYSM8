@@ -11,7 +11,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         UserService userService;
 
         public ObservableCollection<User> Users;
-        public ObservableCollection<Workout> Workouts => UserService.Instance.CurrentUser?.Workouts;
+        public ObservableCollection<Workout> Workouts => UserService.Instance.CurrentUser?.Workouts; // gör listan tillgänglig för sidan
 
         public RelayCommand SignInCommand => new RelayCommand(execute => SignIn()); // knappar från XAML fil översätts till funktion i denna
         public RelayCommand OpenRegisterWindowCommand => new RelayCommand(execute => OpenRegisterWindow());

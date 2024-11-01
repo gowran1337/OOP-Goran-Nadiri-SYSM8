@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite" xmlns:vm="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel" d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Background="Crimson">
     
     <!--<Window.DataContext>
         <vm:MainWindowViewModel/>
@@ -13,7 +13,7 @@
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label Content="FitTrack Hard Workout Training Force Elite" FontSize="30"/>
+            <Label Content="FitTrack Hard Workout Training Force Elite" Foreground="LightGray" FontSize="30"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="Username" FontSize="17"/>

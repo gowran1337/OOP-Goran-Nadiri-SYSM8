@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.View" xmlns:viewmodel="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:VerificationWindowViewModel}"
         mc:Ignorable="d"
-        Title="VerificationWindow" Height="450" Width="800">
+        Title="VerificationWindow" Height="450" Width="800" Background="Crimson">
     
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">

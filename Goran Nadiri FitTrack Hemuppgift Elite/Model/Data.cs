@@ -17,8 +17,8 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
         {
             Users.Add(new User() // skapar en user
             {
-                Username = "1",
-                Password = "1",
+                Username = "user",
+                Password = "password",
                 Country = "Arabien",
                 SecurityQuestion = "Favorit frukt?",
                 SecurityAnswer = "äpple",
