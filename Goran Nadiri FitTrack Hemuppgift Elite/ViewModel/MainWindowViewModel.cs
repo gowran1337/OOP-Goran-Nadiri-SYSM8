@@ -60,7 +60,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         public string GenerateFAcode()
         {
             Random TheVerificationCode = new Random();
-            return TheVerificationCode.Next(1, 2).ToString(); // skapar 6 siffriga koden
+            return TheVerificationCode.Next(99999, 1000000).ToString(); // skapar 6 siffriga koden
         }
 
         public void SignIn2FA()
