@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows;
 
 
@@ -19,7 +17,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
 
         public User()
         {
-            //Workouts = new ObservableCollection<Workout>();
+            
         }
 
         public override void SignIn()

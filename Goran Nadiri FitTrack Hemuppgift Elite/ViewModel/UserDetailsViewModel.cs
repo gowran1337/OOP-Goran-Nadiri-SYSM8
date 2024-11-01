@@ -16,6 +16,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
         public UserDetailsViewModel(UserService userService)
         {
             this.userService = userService;
+            Users = userService.GetUsers();
         }
         public void Return()
         {
@@ -29,40 +30,50 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
             }
         }
 
-
-        public bool IsUsernameTaken(string username)//KANSKE INTE FUNKAR
+        public bool IsUsernameTaken(string username)
         {
-            return Users.Any(user => user.Username.Equals(username));
+          
+            return Users.Any(user => user.Username.Equals(username)); // kollar ifall username redan finns i listan users
         }
 
-        public void UpdateUserInfo() // lägg till logik för att inte kunna ha ett användarnamn som redan finns
+        public void UpdateUserInfo()  //går att anpassa så att det går att ändra en individuell sak istället för att behöva ändra allt genom att dela upp i flera if satser
         {
-            if(NewUsername.Length < 3)
+            if (string.IsNullOrEmpty(NewUsername) || NewUsername.Length < 3)
             {
-                MessageBox.Show("Username must contain atleast 5 characters", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Username must contain atleast 3 characters", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
-            else if (IsUsernameTaken(NewUsername)) ///KANSKE INTE FUNKAR
+            var currentUser = UserService.Instance.CurrentUser; // sätter currentuser til samma värde som CurrentUser som hämtas från userservice
+            if (NewUsername != null && IsUsernameTaken(NewUsername) && (currentUser == null || !currentUser.Username.Equals(NewUsername)))
             {
                 MessageBox.Show("Username already taken", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
 
-            else if(NewPassword1.Length < 5 || !string.IsNullOrEmpty(NewPassword1))
+            else if (string.IsNullOrEmpty(NewPassword1)|| NewPassword1.Length < 5)
             {
                 MessageBox.Show("Password must contain atleast 5 characters", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
-            else if(NewPassword1 != ConfirmNewPassword1)
+            else if (NewPassword1 != ConfirmNewPassword1)
             {
                 MessageBox.Show("Passwords do not match", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
             else
             {
                 if (!string.IsNullOrEmpty(NewUsername))
                 {
-                    
+                    if (currentUser != null) //sätter dom nya värdena
+                    {
+                        currentUser.Username = NewUsername;
+                        currentUser.Password = NewPassword1;
+                        currentUser.Country = NewCountry;
+                        MessageBox.Show("User info updated successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
                 }
             }
         }
-
 
 
 
@@ -72,6 +83,9 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
         private string _newPassword1;
         private string _confirmNewPassword1;
         private string _newCountry;
+        private string _username;
+
+
 
         public string NewUsername
         {
@@ -81,6 +95,20 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
                 if (_newUsername != value)
                 {
                     _newUsername = value;
+                    OnPropertyChanged();
+                }
+
+            }
+
+        }
+        public string Username
+        {
+            get => _username;
+            set
+            {
+                if (_username != value)
+                {
+                    _username = value;
                     OnPropertyChanged();
                 }
 

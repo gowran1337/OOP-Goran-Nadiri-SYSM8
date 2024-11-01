@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="Add your workouts!" FontSize="20"/>
-            <DatePicker SelectedDate="{Binding SelectedDate}"/>
+            <DatePicker SelectedDate="{Binding SelectedDate}" />
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Workout type"/>

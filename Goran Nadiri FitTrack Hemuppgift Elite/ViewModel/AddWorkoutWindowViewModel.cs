@@ -37,23 +37,27 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
             }
             else if (!IsNumeric(Duration))
             {
-                MessageBox.Show("Write duration in minutes", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Use numbers", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
             else if (!IsNumeric(Reps))
             {
-                MessageBox.Show("Write duration in minutes", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Input number of reps (using numbers)", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
             Workout newWorkout;
             
             {
                 if (WorkoutType == "Cardio")
                 {
+                     
                      newWorkout = new Cardio(SelectedDate, WorkoutType, Duration, CaloriesBurned, Notes, Reps);
-
+                    CaloriesBurned = newWorkout.CalculateCaloriesBurned(); // anropar metoden för att räkna ut caliroes burned
                 }
                 else if (WorkoutType == "Strength")
                 {
                      newWorkout = new Strength(SelectedDate, WorkoutType, Duration, CaloriesBurned, Notes, Reps);
+                    CaloriesBurned = newWorkout.CalculateCaloriesBurned();
                 }
                 else
                 {
@@ -67,7 +71,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 
             }
         }
-        bool IsNumeric(string input)
+        bool IsNumeric(string input) // metod for att se till att bara siffror matas i textboxen
         {
             foreach (char c in input)
             {
@@ -81,7 +85,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         private string _notes;
         private string _duration;
         private string _workoutType;
-        private DateTime _selectedDate;
+        private DateTime _selectedDate = DateTime.Today;
         private string _currentUser;
         private string _reps;
         private int _caloriesburned;

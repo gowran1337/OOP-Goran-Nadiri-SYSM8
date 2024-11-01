@@ -6,9 +6,7 @@
         xmlns:local="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.View" xmlns:vm="clr-namespace:Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel"
         mc:Ignorable="d"
         Title="RegisterWindow" Height="450" Width="800">
-    <!--<Window.DataContext>
-        <vm:RegisterWindowViewModel/>
-    </Window.DataContext>-->
+    
 
     <Grid>
         <Grid.RowDefinitions>

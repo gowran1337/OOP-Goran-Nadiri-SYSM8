@@ -1,12 +1,7 @@
 ﻿using Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model;
 using Goran_Nadiri_FitTrack_Hemuppgift_Elite.NVVM;
 using Goran_Nadiri_FitTrack_Hemuppgift_Elite.View;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
@@ -19,6 +14,10 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         public RelayCommand EditCommand => new RelayCommand(execute => Edit());
         public RelayCommand ReturnCommand => new RelayCommand(execute => Return());
 
+       
+
+
+
         private void Edit()
         {
             IsEditing = true;        
@@ -26,9 +25,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 
         private void Save()
         {
-            IsEditing = false; 
-
-            
+            IsEditing = false;    
             MessageBox.Show("Changes saved successfully!", "Save", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private void Return()
@@ -42,7 +39,6 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                 }
             }
         }
-
 
         private string _duration;
         private DateTime _date;

@@ -9,16 +9,32 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
     internal class WorkoutWindowViewModel : ViewModelBase
     {  
         public ObservableCollection<Workout> Workouts => UserService.Instance.CurrentUser?.Workouts; // hämtar listan workouts så man kan använda sig av den
+        public string Username => UserService.Instance.CurrentUser?.Username; // hämtar username så den kan displayas
 
         public RelayCommand OpenAddWorkOutWindowCommand => new RelayCommand(execute => OpenWorkOutWindow());
         public RelayCommand UserDetailsCommand => new RelayCommand(execute => OpenUserDetailsWindow());
         public RelayCommand AppInfoCommand => new RelayCommand(execute => ShowAppInfo());
         public RelayCommand RemoveWorkOutCommand => new RelayCommand(execute => RemoveWorkout());
         public RelayCommand ShowWorkoutDetailsCommand => new RelayCommand(execute => OpenWorkoutDetailsWindow());
+        public RelayCommand SignOutCommand => new RelayCommand(execute => SignOut());
 
         public WorkoutWindowViewModel(UserService instance)
         {
 
+        }
+
+        public void SignOut()
+        {
+            MainWindow mainwindow = new();
+            mainwindow.Show();
+            foreach (Window window in Application.Current.Windows)  //loopar igenom fönster
+            {
+                if (window is WorkoutWindow) // stänger fönstret om det är detta fönstret
+                {
+                    window.Close();
+                    break;
+                }
+            }
         }
         public void OpenWorkoutDetailsWindow()
         {
@@ -65,6 +81,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
             }
         }
 
+
         
         private User _currentUser;
         
@@ -87,8 +104,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
                 }
             }
         }
-        
-        
+       
         public Workout SelectedWorkout
         {
             get => _selectedWorkout;

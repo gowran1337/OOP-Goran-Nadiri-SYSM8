@@ -26,7 +26,7 @@
                 </DataGrid.Columns>
                 
         </DataGrid>
-        </StackPanel>
+        </StackPanel> 
         <Button Content="Back" Command="{Binding ReturnCommand}" Width="100" VerticalAlignment="Top" Margin="100"/>
     </Grid>
 </Window>

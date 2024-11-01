@@ -9,7 +9,8 @@
     
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Text="{Binding CurrentUser}" FontSize="20"/>
+        <Button Content="Sign out" Command="{Binding SignOutCommand}" Margin="70"/>
+            <TextBlock Text="{Binding Username}" FontSize="20"/>
             <Button Content="Show User Details" Command="{Binding UserDetailsCommand}" Width="100"/>
             <Button Content="Information Station" Command="{Binding AppInfoCommand}"  Width="120"/>
 
