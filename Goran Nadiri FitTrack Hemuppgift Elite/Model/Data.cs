@@ -11,10 +11,11 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
         public ObservableCollection<User> Users { get; } = new ObservableCollection<User>(); //skapar listan Users
         public ObservableCollection<User> GetUsers() { return Users; }
         public User CurrentUser { get; set; }
+        public User AllUsers { get; set; }
 
         public UserService()
         {
-            Users.Add(new User()
+            Users.Add(new User() // skapar en user
             {
                 Username = "1",
                 Password = "1",
@@ -42,6 +43,22 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
                 Username = "admin",
                 Password = "1234"
             });
+
+
+
+
+        }
+        public ObservableCollection<Workout> GetAllWorkouts()
+        {//skapar en ny lista och loopar igenom users och dess workouts för att sedan lägga till workout i den nya listan
+            var allWorkouts = new ObservableCollection<Workout>();
+            foreach (var user in Users)
+            {
+                foreach (var workout in user.Workouts)
+                {
+                    allWorkouts.Add(workout);
+                }
+            }
+            return allWorkouts;
         }
         public void AddUser(User newUser)
         {

@@ -37,12 +37,20 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 );// letar efter en user som har samma namn som inmatad text samt lösenord
             if (User != null && TheVerificationCode == EnteredVerificationCode)
             {
+                if (LoginUsername == "admin")
+                {
+                    AdminWindow admin = new AdminWindow(UserService.Instance);
+                    admin.Show();
+                    Application.Current.MainWindow.Close();
+                    return;
+                }
                 UserService.Instance.CurrentUser = User; // den som loggar in blir current user
                 WorkoutWindow workoutWindow = new WorkoutWindow(UserService.Instance);//skickar data till nya fönstret via USERSERVICE
                 workoutWindow.Show(); //öppnar ´workout fönstret
                 
                 Application.Current.MainWindow.Close();
             }
+            
             else
             {
                 MessageBox.Show("Invalid username or password or 2FA code", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

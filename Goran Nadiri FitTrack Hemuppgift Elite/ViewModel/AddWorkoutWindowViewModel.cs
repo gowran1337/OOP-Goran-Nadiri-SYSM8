@@ -1,12 +1,6 @@
 ﻿using Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model;
 using Goran_Nadiri_FitTrack_Hemuppgift_Elite.NVVM;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.DirectoryServices.ActiveDirectory;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
@@ -16,8 +10,6 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         UserService userService;
 
         public ObservableCollection<User> Users;
-
-        //public ObservableCollection<string> WorkoutTypes { get; } = new ObservableCollection<string> { "Cardio", "Strength" };
         public RelayCommand AddWorkoutCommand => new RelayCommand(execute => AddWorkout());
 
         public AddWorkoutWindowViewModel(UserService userService)
@@ -25,15 +17,13 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
             this.userService = userService;
             Users = userService.GetUsers();
         }
-
+        Workout newWorkout;
         public void AddWorkout() //if else för cardio eller strenght
         {
-
             if (string.IsNullOrWhiteSpace(Notes?.Trim()) || string.IsNullOrWhiteSpace(Duration)
                 || SelectedDate == null)
             {
                 MessageBox.Show("Fill in all blank spaces", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
             }
             else if (!IsNumeric(Duration))
             {
@@ -44,13 +34,10 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
             {
                 MessageBox.Show("Input number of reps (using numbers)", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
-            }
-            Workout newWorkout;
-            
+            }         
             {
                 if (WorkoutType == "Cardio")
-                {
-                     
+                {                   
                      newWorkout = new Cardio(SelectedDate, WorkoutType, Duration, CaloriesBurned, Notes, Reps);
                     CaloriesBurned = newWorkout.CalculateCaloriesBurned(); // anropar metoden för att räkna ut caliroes burned
                 }
@@ -65,10 +52,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
                     return;
                 }
                 UserService.Instance.CurrentUser?.Workouts.Add(newWorkout);
-
                 MessageBox.Show("Workout added successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-
-
             }
         }
         bool IsNumeric(string input) // metod for att se till att bara siffror matas i textboxen
@@ -92,7 +76,6 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         private string _strength;
         private string _workoutTypes;
         
-
         public DateTime SelectedDate
         {
             get => _selectedDate;
@@ -133,7 +116,6 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 
             }
         }
-
         public string Strength
         {
             get => _strength;
@@ -148,7 +130,6 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
             }
 
         }
-
         public string Reps
         {
             get => _reps;
@@ -177,7 +158,6 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
             }
 
         }
-
         public string Duration
         {
             get => _duration;

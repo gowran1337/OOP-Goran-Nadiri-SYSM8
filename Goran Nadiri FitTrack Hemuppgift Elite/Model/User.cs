@@ -17,7 +17,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model
 
         public User()
         {
-            
+             Workouts = new ObservableCollection<Workout>();
         }
 
         public override void SignIn()

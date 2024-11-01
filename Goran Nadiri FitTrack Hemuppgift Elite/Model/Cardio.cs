@@ -23,21 +23,6 @@
 
             return CaloriesBurned; // 11 kalorier/minut bränner joggning
         }
-        private string _duration;
-
-
-        public string Duration
-        {
-            get => _duration;
-            set
-            {
-                if (_duration != value)
-                {
-                    _duration = value;
-                    OnPropertyChanged();
-                    CalculateCaloriesBurned(); // Calls the override method
-                }
-            }
-        }
     }
 }
+
