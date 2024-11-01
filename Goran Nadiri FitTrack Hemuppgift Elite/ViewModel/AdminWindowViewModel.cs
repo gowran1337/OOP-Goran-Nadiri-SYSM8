@@ -1,24 +1,55 @@
 ﻿using Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model;
 using Goran_Nadiri_FitTrack_Hemuppgift_Elite.NVVM;
-using System;
-using System.Collections.Generic;
+using Goran_Nadiri_FitTrack_Hemuppgift_Elite.View;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 
 namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 {
     internal class AdminWindowViewModel : ViewModelBase
     {
-        public ObservableCollection<Workout> Workouts => UserService.Instance.CurrentUser?.Workouts; // hämtar listan workouts så man kan använda sig av den   
 
+
+        public RelayCommand SignOutCommand => new RelayCommand(execute => SignOut());
+        public RelayCommand RemoveCommand => new RelayCommand(execute => Remove());
+
+        public ObservableCollection<Workout> Workouts => UserService.Instance.CurrentUser?.Workouts; // hämtar listan workouts så man kan använda sig av den   
         public ObservableCollection<Workout> AllWorkouts { get; set; }
         private UserService userService;
         public AdminWindowViewModel(UserService userService)
         {
             this.userService = userService;
             AllWorkouts = userService.GetAllWorkouts();
+        }
+
+        private void Remove()
+        {
+            if (SelectedWorkout != null)
+            {
+                // Find the user who owns this workout
+                var userWithWorkout = userService.Users.FirstOrDefault(user => user.Workouts.Contains(SelectedWorkout));
+                if (userWithWorkout != null)
+                {
+                    // Remove from user's workout list and from the AllWorkouts collection
+                    userWithWorkout.Workouts.Remove(SelectedWorkout);
+                    AllWorkouts.Remove(SelectedWorkout);
+                    MessageBox.Show("Workout removed successfully!", "Success", MessageBoxButton.OK);
+                }
+            }
+        }
+        private void SignOut()
+        {
+            MainWindow mainwindow = new();
+            mainwindow.Show();
+
+            foreach (Window window in Application.Current.Windows)  //loopar igenom fönster
+            {
+                if (window is AdminWindow) // stänger fönstret om det är detta fönstret
+                {
+                    window.Close();
+                    break;
+                }
+            }
         }
 
         private User _username;

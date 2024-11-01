@@ -11,7 +11,7 @@
             <Button Content="Sign out" Command="{Binding SignOutCommand}" Width="100" Margin="30"/>
             <TextBlock Text="Admin view mode" FontSize="20"/>
             <Button Content="Remove" Command="{Binding RemoveCommand}" Width="100"/>
-            <DataGrid ItemsSource="{Binding AllWorkouts}" IsEnabled="{Binding IsEditing}"  AutoGenerateColumns="False" >
+            <DataGrid ItemsSource="{Binding AllWorkouts}" IsEnabled="{Binding IsEditing}" SelectedItem="{Binding SelectedWorkout}"  AutoGenerateColumns="False" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header=" Type" Binding="{Binding WorkoutType}" />
                     <DataGridTextColumn Header=" Date" Binding="{Binding Date}" />
