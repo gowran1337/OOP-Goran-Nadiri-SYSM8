@@ -17,6 +17,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
         public RelayCommand OpenRegisterWindowCommand => new RelayCommand(execute => OpenRegisterWindow());
         public RelayCommand ForgotPasswordCommand => new RelayCommand(execute => OpenForgotPasswordWindow());   
         public RelayCommand SignIn2FAcommand => new RelayCommand(execute => SignIn2FA());
+        public RelayCommand ExitCommand => new RelayCommand(execute => Exit());
 
         public MainWindowViewModel(UserService userService)
         {
@@ -24,6 +25,10 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
             Users = userService.GetUsers();            
         }
        
+        public void Exit()
+        {
+            Application.Current.MainWindow.Close();
+        }
         public void OpenForgotPasswordWindow()
         {
             ForgetPasswordWindow forgetPasswordWindow = new ForgetPasswordWindow(userService);

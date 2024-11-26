@@ -1,5 +1,6 @@
 ﻿ using Goran_Nadiri_FitTrack_Hemuppgift_Elite.Model;
 using Goran_Nadiri_FitTrack_Hemuppgift_Elite.NVVM;
+using Goran_Nadiri_FitTrack_Hemuppgift_Elite.View;
 using System.Collections.ObjectModel;
 using System.Windows;
 
@@ -11,11 +12,25 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.ViewModel
 
         public ObservableCollection<User> Users;
         public RelayCommand AddWorkoutCommand => new RelayCommand(execute => AddWorkout());
+        public RelayCommand BackCommand => new RelayCommand(execute => Back());
 
         public AddWorkoutWindowViewModel(UserService userService)
         {
             this.userService = userService;
             Users = userService.GetUsers();
+        }
+
+        public void Back()
+        {
+            foreach (Window window in Application.Current.Windows)  //loopar igenom fönster
+            {
+                
+                if (window is AddWorkoutWindow) // stänger fönstret om det är detta fönstret
+                {
+                    window.Close();
+                    break;
+                }
+            }
         }
         Workout newWorkout;
         public void AddWorkout() //if else för cardio eller strenght

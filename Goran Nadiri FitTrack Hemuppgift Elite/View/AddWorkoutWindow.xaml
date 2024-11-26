@@ -29,7 +29,9 @@
             <Label Content="Notes" HorizontalAlignment="Center"/>
             <TextBox Height="70" Text="{Binding Notes}"/>
             <Button Content="Add" Command="{Binding AddWorkoutCommand}"/>
-            
+            <Button Content="Back" Command="{Binding BackCommand}"/>
+
+
         </StackPanel>
     </Grid>
 </Window>

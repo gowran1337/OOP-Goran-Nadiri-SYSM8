@@ -33,8 +33,9 @@
             <Button Content="Send 2FA Code" Command="{Binding SignIn2FAcommand}" Width="200"/>
             <Button Content="Register" Command="{Binding OpenRegisterWindowCommand}" Width="200"/>
             <Button Content="Forgot password" Command="{Binding ForgotPasswordCommand}" Width="100" Margin="10"/>
-           
-            
+            <Button Content="Exit" Command="{Binding ExitCommand}" Width="100"/>
+
+
         </StackPanel>
     </Grid>
 </Window>

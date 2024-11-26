@@ -19,6 +19,7 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
         public RelayCommand SubmitUsernameCommand => new RelayCommand(execute => SubmitUsername());
         public RelayCommand SubmitAnswerCommand => new RelayCommand(execute => SubmitAnswer());
         public RelayCommand ChangePasswordCommand => new RelayCommand(execute => ResetPassword());
+        public RelayCommand BackCommand => new RelayCommand(execute => Back());
 
         public ForgetPasswordViewModel(UserService userService)
         {
@@ -26,7 +27,20 @@ namespace Goran_Nadiri_FitTrack_Hemuppgift_Elite.View
             Users = userService.GetUsers();
         }
 
+        public void Back()
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
 
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window is ForgetPasswordWindow)
+                {
+                    window.Close();
+                    break;
+                }
+            }
+        }
         private void SubmitUsername()
         {
             var User = Users.FirstOrDefault(u => u.Username == ForgotUsername); //letar efter listan Users om det inmatade namnet är kopplat till det i listan
